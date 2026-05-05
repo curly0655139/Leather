@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)file:///C:/Users/curly/Downloads/index_29.html -->
+<html lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="驗貨系統">
+<meta name="theme-color" content="#7C3D12">
+<title>皮革驗貨系統</title>
+<link href="./皮革驗貨系統_files/css2" rel="stylesheet">
+<style>
+:root {
+  --bg: #F7F4F0;
+  --surface: #FFFFFF;
+  --surface2: #F0EDE8;
+  --border: #E0D9D0;
+  --text: #1C1714;
+  --text2: #6B6158;
+  --text3: #A8A098;
+  --accent: #7C3D12;
+  --accent2: #B85C2A;
+  --accent-bg: #FDF0E6;
+  --pass: #1A6B45;
+  --pass-bg: #E6F5EE;
+  --fail: #9B1C1C;
+  --fail-bg: #FEE8E8;
+  --warn-bg: #FEF3C7;
+  --warn: #92400E;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --nav-h: 68px;
+  --header-h: 56px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; overflow: hidden; }
+body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--text); }
+
+/* ── LAYOUT ── */
+.app { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
+
+/* ── HEADER ── */
+.app-header {
+  background: var(--accent);
+  padding: calc(var(--safe-top) + 12px) 1.25rem 12px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0; z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+.app-title { color: #fff; font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.app-title-icon { width: 32px; height: 32px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.header-btns { display: flex; gap: 8px; }
+.btn-hd { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 7px 13px; border-radius: 8px; font-size: 13px; font-family: inherit; cursor: pointer; font-weight: 600; }
+
+/* ── CONTENT ── */
+.app-content { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+
+/* ── BOTTOM NAV ── */
+.app-nav {
+  display: flex; flex-shrink: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding-bottom: var(--safe-bottom);
+}
+.nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 0; gap: 4px; cursor: pointer; border: none; background: none; font-family: inherit; color: var(--text3); font-size: 11px; font-weight: 600; letter-spacing: 0.02em; transition: color 0.15s; }
+.nav-item.active { color: var(--accent); }
+.nav-item .nav-icon { font-size: 24px; line-height: 1; }
+
+/* ── PAGES ── */
+.page { display: none; padding: 1rem; }
+.page.active { display: block; }
+
+/* ── STATUS BAR ── */
+#sync-bar { position: sticky; top: 0; left: 0; right: 0; padding: 10px 16px; font-size: 13px; font-weight: 600; text-align: center; z-index: 50; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+
+/* ── METRICS ── */
+.metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.25rem; }
+.metric-card { background: var(--surface); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
+.metric-label { font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+.metric-val { font-size: 32px; font-weight: 700; font-family: 'DM Mono', monospace; line-height: 1; }
+.metric-val.accent { color: var(--accent2); }
+.metric-val.pass { color: var(--pass); }
+.metric-val.fail { color: var(--fail); }
+
+/* ── ORDER CARDS ── */
+.order-card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 12px; overflow: hidden; }
+.order-card-hd { padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; -webkit-user-select: none; }
+.order-card-hd:active { background: var(--surface2); }
+.order-info { flex: 1; min-width: 0; }
+.order-no { font-size: 14px; font-weight: 700; font-family: 'DM Mono', monospace; color: var(--accent); margin-bottom: 3px; }
+.order-desc { font-size: 13px; color: var(--text2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.order-meta { display: flex; align-items: center; gap: 8px; flex-shrink: 0; margin-left: 10px; }
+.batch-count { font-size: 12px; font-weight: 600; color: var(--text3); white-space: nowrap; }
+.chevron { font-size: 13px; color: var(--text3); transition: transform 0.25s; }
+.order-card.open .chevron { transform: rotate(180deg); }
+
+.order-card-body { display: none; border-top: 1px solid var(--border); }
+.order-card.open .order-card-body { display: block; }
+
+.order-progress-bar-wrap { padding: 10px 16px; background: var(--surface2); border-bottom: 1px solid var(--border); }
+.progress-bar { height: 8px; background: var(--border); border-radius: 99px; overflow: hidden; margin-bottom: 5px; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent)); border-radius: 99px; transition: width 0.4s; }
+.progress-text { font-size: 11px; color: var(--text3); font-family: 'DM Mono', monospace; }
+
+.add-batch-wrap { padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; gap: 8px; }
+.add-batch-wrap input { flex: 1; padding: 10px 13px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-size: 15px; font-family: inherit; background: var(--bg); color: var(--text); outline: none; }
+.add-batch-wrap input:focus { border-color: var(--accent2); }
+
+/* ── BATCH ROWS ── */
+.batch-row { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 12px; }
+.batch-row:last-child { border-bottom: none; }
+.batch-no-badge { font-size: 13px; font-weight: 700; font-family: 'DM Mono', monospace; color: var(--text); min-width: 52px; padding-top: 2px; }
+.batch-info { flex: 1; min-width: 0; }
+.batch-uninspected { font-size: 13px; color: var(--text3); padding-top: 2px; }
+.batch-results { display: flex; gap: 10px; margin-bottom: 6px; }
+.batch-pass { font-size: 14px; font-weight: 700; color: var(--pass); }
+.batch-fail { font-size: 14px; font-weight: 700; color: var(--fail); }
+.batch-checks { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 8px; }
+.ctag { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 99px; white-space: nowrap; }
+.ctag.pass { background: var(--pass-bg); color: var(--pass); }
+.ctag.fail { background: var(--fail-bg); color: var(--fail); }
+.ctag.na { background: var(--surface2); color: var(--text3); }
+.footage-row { display: flex; gap: 8px; align-items: center; }
+.footage-row input { flex: 1; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; font-family: inherit; background: var(--bg); outline: none; }
+.footage-row input:focus { border-color: var(--accent2); }
+.batch-actions { display: flex; gap: 6px; flex-direction: column; flex-shrink: 0; }
+
+/* ── BUTTONS ── */
+.btn { padding: 9px 16px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; border: none; white-space: nowrap; transition: all 0.15s; }
+.btn:active { transform: scale(0.96); }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-success { background: var(--pass); color: #fff; }
+.btn-outline { background: var(--surface); border: 1.5px solid var(--border); color: var(--text2); }
+.btn-outline:active { background: var(--surface2); }
+.btn-danger { background: var(--fail-bg); border: 1.5px solid var(--fail); color: var(--fail); }
+.btn-full { width: 100%; padding: 16px; font-size: 16px; border-radius: var(--radius); }
+
+/* ── FORM ── */
+.form-section { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.25rem; margin-bottom: 1rem; }
+.form-section-title { font-size: 12px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.form-group { margin-bottom: 14px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+label { font-size: 12px; font-weight: 600; color: var(--text2); display: block; margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.05em; }
+input[type=text], input[type=date], input[type=number], select, textarea {
+  width: 100%; padding: 13px 14px;
+  border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  font-size: 16px; font-family: inherit;
+  background: var(--bg); color: var(--text);
+  outline: none; -webkit-appearance: none; appearance: none;
+  transition: border-color 0.15s;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--accent2); background: var(--surface); box-shadow: 0 0 0 3px rgba(184,92,42,0.1); }
+select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6158' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-color: var(--bg); padding-right: 40px; }
+textarea { resize: none; height: 80px; font-size: 15px; }
+
+/* ── CHECK GRID ── */
+.check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.check-item { border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 14px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: all 0.15s; user-select: none; -webkit-user-select: none; }
+.check-item:active { transform: scale(0.97); }
+.check-item.pass { border-color: var(--pass); background: var(--pass-bg); }
+.check-item.fail { border-color: var(--fail); background: var(--fail-bg); }
+.check-label { font-size: 15px; font-weight: 600; color: var(--text2); }
+.check-item.pass .check-label { color: var(--pass); }
+.check-item.fail .check-label { color: var(--fail); }
+.check-toggle { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 16px; background: var(--surface); flex-shrink: 0; font-weight: 700; }
+.check-item.pass .check-toggle { background: var(--pass); border-color: var(--pass); color: #fff; }
+.check-item.fail .check-toggle { background: var(--fail); border-color: var(--fail); color: #fff; }
+
+/* ── QTY ── */
+.qty-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.qty-wrap { position: relative; }
+.qty-wrap input { text-align: center; font-size: 22px; font-weight: 700; font-family: 'DM Mono', monospace; padding: 14px 40px 14px 14px; }
+.qty-unit { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text3); font-weight: 700; }
+
+/* ── EDIT BANNER ── */
+.edit-banner { background: var(--warn-bg); border: 2px solid #F59E0B; border-radius: var(--radius-sm); padding: 12px 16px; font-size: 14px; color: var(--warn); margin-bottom: 14px; font-weight: 600; display: none; }
+
+/* ── PREFILL INFO ── */
+.prefill-info { background: var(--accent-bg); border: 1.5px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 14px; font-size: 14px; color: var(--text2); line-height: 1.7; display: none; }
+
+/* ── FILTER BAR ── */
+.filter-bar { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; align-items: center; }
+.filter-select { padding: 8px 12px; border: 1.5px solid var(--border); border-radius: 99px; font-size: 13px; font-family: inherit; background: var(--surface); color: var(--text); outline: none; -webkit-appearance: none; appearance: none; cursor: pointer; font-weight: 600; }
+.filter-select:focus { border-color: var(--accent2); }
+.filter-toggle { padding: 8px 14px; border: 1.5px solid var(--border); border-radius: 99px; font-size: 13px; font-family: inherit; background: var(--surface); color: var(--text3); font-weight: 600; cursor: pointer; transition: all 0.15s; }
+.filter-toggle.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* ── EMPTY ── */
+.empty { text-align: center; padding: 4rem 1rem; color: var(--text3); }
+.empty-icon { font-size: 52px; opacity: 0.25; margin-bottom: 12px; }
+.empty-text { font-size: 15px; font-weight: 500; }
+
+/* ── DESKTOP ── */
+@media (min-width: 1024px) and (pointer: fine) {
+  html, body { overflow: auto; height: auto; }
+  .app { display: block; height: auto; }
+  .app-content { overflow: visible; }
+  .app-nav { display: none; }
+  .page { display: none !important; }
+  .desktop-wrap { display: grid !important; }
+  .app-header { padding: 0 2rem; height: 58px; position: sticky; top: 0; z-index: 100; }
+  .app-title { font-size: 16px; }
+}
+.desktop-wrap { display: none; max-width: 1280px; margin: 0 auto; padding: 1.5rem 2rem; grid-template-columns: 1fr 340px; gap: 1.5rem; align-items: start; }
+.desktop-metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 1.5rem; grid-column: 1/-1; }
+.desktop-metrics .metric-val { font-size: 26px; }
+.desktop-orders { grid-column: 1; }
+.desktop-form { grid-column: 2; position: sticky; top: 74px; }
+.desktop-form .form-section { padding: 1rem; }
+.desktop-form label { font-size: 11px; }
+.desktop-form input, .desktop-form select, .desktop-form textarea { font-size: 14px; padding: 9px 12px; }
+.desktop-form .check-item { padding: 10px 12px; }
+.desktop-form .check-label { font-size: 13px; }
+.desktop-form .check-toggle { width: 26px; height: 26px; font-size: 13px; }
+.desktop-form .qty-wrap input { font-size: 18px; padding: 10px 36px 10px 10px; }
+.desktop-form .btn-full { padding: 12px; font-size: 14px; }
+
+@media print {
+  .app-nav, .no-print { display: none !important; }
+  html, body { overflow: auto; height: auto; }
+  .app { display: block; }
+  .app-content { overflow: visible; }
+  .desktop-wrap { display: grid !important; }
+  .page { display: none !important; }
+  .desktop-form { display: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- HEADER -->
+<header class="app-header">
+  <div class="app-title">
+    <div class="app-title-icon">🧵</div>
+    皮革驗貨系統
+  </div>
+  <div class="header-btns no-print">
+    <button class="btn-hd" onclick="exportCSV()">📊</button>
+    <button class="btn-hd" onclick="window.print()">🖨️</button>
+  </div>
+</header>
+
+<div id="sync-bar" style="background: rgb(26, 107, 69); color: rgb(255, 255, 255); opacity: 0;">✓ 資料已同步</div>
+
+<!-- CONTENT -->
+<div class="app-content">
+
+  <!-- MOBILE: 訂單 -->
+  <div id="page-orders" class="page active">
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-label">總訂單</div><div class="metric-val accent" id="mm-orders">17</div></div>
+      <div class="metric-card"><div class="metric-label">總批次</div><div class="metric-val accent" id="mm-batches">22</div></div>
+      <div class="metric-card"><div class="metric-label">已驗批次</div><div class="metric-val pass" id="mm-done">0</div></div>
+      <div class="metric-card"><div class="metric-label">未驗批次</div><div class="metric-val fail" id="mm-todo">22</div></div>
+    </div>
+    <div class="filter-bar">
+      <select class="filter-select" id="m-filter-year" onchange="applyFilter(&#39;m&#39;)"><option value="">全部年份</option><option value="2026">2026年</option></select>
+      <select class="filter-select" id="m-filter-month" onchange="applyFilter(&#39;m&#39;)">
+        <option value="">全部月份</option>
+        <option value="01">1月</option><option value="02">2月</option><option value="03">3月</option>
+        <option value="04">4月</option><option value="05">5月</option><option value="06">6月</option>
+        <option value="07">7月</option><option value="08">8月</option><option value="09">9月</option>
+        <option value="10">10月</option><option value="11">11月</option><option value="12">12月</option>
+      </select>
+      <button class="filter-toggle" id="m-show-done" onclick="toggleShowDone()">顯示已完成</button>
+    </div>
+    <div id="m-order-list"><div class="order-card" id="m-ord-0">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-0&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26010502</div>
+          <div class="order-desc">NAPPA J2 · BLK · ETC 4/23</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/0批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 41325 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-0-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26010502&#39;,document.getElementById(&#39;m-ord-0-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;m-ord-0-batch-input&#39;)">新增</button>
+        </div>
+        <div style="padding:16px;color:var(--text3);font-size:14px;text-align:center">尚無批次，請新增批號</div>
+      </div>
+    </div><div class="order-card" id="m-ord-1">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-1&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26020903</div>
+          <div class="order-desc">NAPPA J2 · BLK · ETC 4/23</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/0批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 6925 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-1-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26020903&#39;,document.getElementById(&#39;m-ord-1-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;m-ord-1-batch-input&#39;)">新增</button>
+        </div>
+        <div style="padding:16px;color:var(--text3);font-size:14px;text-align:center">尚無批次，請新增批號</div>
+      </div>
+    </div><div class="order-card" id="m-ord-2">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-2&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26020903</div>
+          <div class="order-desc">NAPPA J2 · BLK · ETC 4/23</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/0批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 7800 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-2-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26020903&#39;,document.getElementById(&#39;m-ord-2-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;m-ord-2-batch-input&#39;)">新增</button>
+        </div>
+        <div style="padding:16px;color:var(--text3);font-size:14px;text-align:center">尚無批次，請新增批號</div>
+      </div>
+    </div><div class="order-card" id="m-ord-3">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-3&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26031701</div>
+          <div class="order-desc">NAPPA J2 · BLK · ETC 4/23</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/0批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 2900 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-3-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26031701&#39;,document.getElementById(&#39;m-ord-3-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;m-ord-3-batch-input&#39;)">新增</button>
+        </div>
+        <div style="padding:16px;color:var(--text3);font-size:14px;text-align:center">尚無批次，請新增批號</div>
+      </div>
+    </div><div class="order-card" id="m-ord-4">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-4&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26031003</div>
+          <div class="order-desc">DUBLIN · 0800374 · ETC 4/23</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/5批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 20000 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-4-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26031003&#39;,document.getElementById(&#39;m-ord-4-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800374&#39;,&#39;m-ord-4-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge">1305</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1305&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1305&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1306</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1306&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1306&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1307</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1307&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1307&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1308</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1308&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1308&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1309</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1309&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1309&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="m-ord-5">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-5&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26032001</div>
+          <div class="order-desc">DUBLIN · 0800374 · ETC 4/23</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 425 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-5-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26032001&#39;,document.getElementById(&#39;m-ord-5-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800374&#39;,&#39;m-ord-5-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge">No produce</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26032001&#39;,&#39;No produce&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;No produce&#39;,&#39;AC1-26032001&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="m-ord-6">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-6&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26033004</div>
+          <div class="order-desc">DUBLIN · 1200248 · ETC 4/27</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/5批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 18900 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-6-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26033004&#39;,document.getElementById(&#39;m-ord-6-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;1200248&#39;,&#39;m-ord-6-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge">1325</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1325&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1325&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1326</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1326&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1326&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1327</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1327&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1327&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1328</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1328&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1328&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1329</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1329&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1329&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="m-ord-7">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-7&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26033004</div>
+          <div class="order-desc">DUBLIN · 0800982 · ETC 4/27</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 2500 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-7-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26033004&#39;,document.getElementById(&#39;m-ord-7-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800982&#39;,&#39;m-ord-7-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge">No produce</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;No produce&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;No produce&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="m-ord-8">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-8&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26033004</div>
+          <div class="order-desc">DUBLIN · GR07-19AW · ETC 4/27</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 25 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-8-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26033004&#39;,document.getElementById(&#39;m-ord-8-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;GR07-19AW&#39;,&#39;m-ord-8-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="m-ord-9">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-9&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26033004</div>
+          <div class="order-desc">DUBLIN · 15-0955TP · ETC 4/27</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 25 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-9-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26033004&#39;,document.getElementById(&#39;m-ord-9-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;15-0955TP&#39;,&#39;m-ord-9-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="m-ord-10">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-10&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26031904</div>
+          <div class="order-desc">DUBLIN · PK26-20AW · ETC 4/30</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 1025 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-10-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26031904&#39;,document.getElementById(&#39;m-ord-10-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;PK26-20AW&#39;,&#39;m-ord-10-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031904&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26031904&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="m-ord-11">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-11&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26040104</div>
+          <div class="order-desc">DUBLIN · 0800374 · ETC 4/30</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 3450 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-11-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;m-ord-11-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800374&#39;,&#39;m-ord-11-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="m-ord-12">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-12&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26040104</div>
+          <div class="order-desc">DUBLIN · 0800982 · ETC 4/30</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 13650 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-12-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;m-ord-12-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800982&#39;,&#39;m-ord-12-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="m-ord-13">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-13&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26040104</div>
+          <div class="order-desc">NAPPA J2 · 18-1312TPG · ETC 4/30</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 150 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-13-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;m-ord-13-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;18-1312TPG&#39;,&#39;m-ord-13-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="m-ord-14">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-14&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26012104</div>
+          <div class="order-desc">DUBLIN · GN63-22AW · ETC 4/30</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 250 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-14-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26012104&#39;,document.getElementById(&#39;m-ord-14-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;GN63-22AW&#39;,&#39;m-ord-14-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26012104&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26012104&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="m-ord-15">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-15&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26040104</div>
+          <div class="order-desc">DUBLIN · YL02-19S · ETC 4/30</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 4100 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-15-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;m-ord-15-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;YL02-19S&#39;,&#39;m-ord-15-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="m-ord-16">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-16&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26040104</div>
+          <div class="order-desc">NAPPA J2 · BLK · ETC 4/30</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/2批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 2175 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="m-ord-16-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;m-ord-16-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;m-ord-16-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1234</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;1234&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1234&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- MOBILE: 驗貨 -->
+  <div id="page-inspect" class="page">
+    <div class="edit-banner" id="m-edit-banner">✏️ 編輯模式</div>
+    <div class="prefill-info" id="m-prefill"></div>
+
+    <div class="form-section">
+      <div class="form-section-title">基本資料</div>
+      <div class="form-group"><label>訂單號碼</label><select id="m-orderNo" onchange="onOrderChange(&#39;m&#39;)"><option value="">請選擇</option><option value="AC1-26010502">AC1-26010502 — NAPPA J2 — BLK</option><option value="AC1-26020903">AC1-26020903 — NAPPA J2 — BLK</option><option value="AC1-26020903">AC1-26020903 — NAPPA J2 — BLK</option><option value="AC1-26031701">AC1-26031701 — NAPPA J2 — BLK</option><option value="AC1-26031003">AC1-26031003 — DUBLIN — 0800374</option><option value="AC1-26032001">AC1-26032001 — DUBLIN — 0800374</option><option value="AC1-26033004">AC1-26033004 — DUBLIN — 1200248</option><option value="AC1-26033004">AC1-26033004 — DUBLIN — 0800982</option><option value="AC1-26033004">AC1-26033004 — DUBLIN — GR07-19AW</option><option value="AC1-26033004">AC1-26033004 — DUBLIN — 15-0955TP</option><option value="AC1-26031904">AC1-26031904 — DUBLIN — PK26-20AW</option><option value="AC1-26040104">AC1-26040104 — DUBLIN — 0800374</option><option value="AC1-26040104">AC1-26040104 — DUBLIN — 0800982</option><option value="AC1-26040104">AC1-26040104 — NAPPA J2 — 18-1312TPG</option><option value="AC1-26012104">AC1-26012104 — DUBLIN — GN63-22AW</option><option value="AC1-26040104">AC1-26040104 — DUBLIN — YL02-19S</option><option value="AC1-26040104">AC1-26040104 — NAPPA J2 — BLK</option></select></div>
+      <div class="form-row">
+        <div><label>皮廠批號</label><select id="m-batchNo"><option value="">請選批號</option></select></div>
+        <div><label>驗貨日期</label><input type="date" id="m-date"></div>
+      </div>
+      <div class="form-group"><label>驗貨員</label>
+        <select id="m-inspector"><option value="">請選擇</option><option>Johnny</option><option>Ellen</option><option>Nicole</option></select>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">外觀檢驗（點擊切換）</div>
+      <div class="check-grid" id="m-checks">
+        <div class="check-item" onclick="toggleCheck(this,&#39;m&#39;,&#39;color&#39;)" data-key="color"><span class="check-label">顏色</span><span class="check-toggle">？</span></div>
+        <div class="check-item" onclick="toggleCheck(this,&#39;m&#39;,&#39;physical&#39;)" data-key="physical"><span class="check-label">物性</span><span class="check-toggle">？</span></div>
+        <div class="check-item" onclick="toggleCheck(this,&#39;m&#39;,&#39;softness&#39;)" data-key="softness"><span class="check-label">軟度</span><span class="check-toggle">？</span></div>
+        <div class="check-item" onclick="toggleCheck(this,&#39;m&#39;,&#39;texture&#39;)" data-key="texture"><span class="check-label">紋路</span><span class="check-toggle">？</span></div>
+        <div class="check-item" onclick="toggleCheck(this,&#39;m&#39;,&#39;backing&#39;)" data-key="backing"><span class="check-label">背毛</span><span class="check-toggle">？</span></div>
+        <div class="check-item" onclick="toggleCheck(this,&#39;m&#39;,&#39;thickness&#39;)" data-key="thickness"><span class="check-label">厚度</span><span class="check-toggle">？</span></div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">張數記錄</div>
+      <div class="qty-grid">
+        <div><label>合格張數</label><div class="qty-wrap"><input type="number" id="m-qtyPass" min="0" inputmode="numeric"><span class="qty-unit">張</span></div></div>
+        <div><label>不合格張數</label><div class="qty-wrap"><input type="number" id="m-qtyFail" min="0" inputmode="numeric"><span class="qty-unit">張</span></div></div>
+      </div>
+      <div class="form-group"><label>備註</label><textarea id="m-note"></textarea></div>
+    </div>
+
+    <div id="m-btn-area" style="margin-bottom:1rem">
+      <button class="btn btn-primary btn-full" onclick="addRecord()">＋ 新增驗貨記錄</button>
+    </div>
+  </div>
+
+  <!-- DESKTOP -->
+  <div class="desktop-wrap">
+    <div class="desktop-metrics metrics-grid">
+      <div class="metric-card"><div class="metric-label">總訂單</div><div class="metric-val accent" id="d-orders">17</div></div>
+      <div class="metric-card"><div class="metric-label">總批次</div><div class="metric-val accent" id="d-batches">22</div></div>
+      <div class="metric-card"><div class="metric-label">已驗</div><div class="metric-val pass" id="d-done">0</div></div>
+      <div class="metric-card"><div class="metric-label">未驗</div><div class="metric-val fail" id="d-todo">22</div></div>
+    </div>
+    <div class="desktop-orders">
+      <div class="filter-bar" style="margin-bottom:1rem">
+        <select class="filter-select" id="d-filter-year" onchange="applyFilter(&#39;d&#39;)"><option value="">全部年份</option><option value="2026">2026年</option></select>
+        <select class="filter-select" id="d-filter-month" onchange="applyFilter(&#39;d&#39;)">
+          <option value="">全部月份</option>
+          <option value="01">1月</option><option value="02">2月</option><option value="03">3月</option>
+          <option value="04">4月</option><option value="05">5月</option><option value="06">6月</option>
+          <option value="07">7月</option><option value="08">8月</option><option value="09">9月</option>
+          <option value="10">10月</option><option value="11">11月</option><option value="12">12月</option>
+        </select>
+        <button class="filter-toggle" id="d-show-done" onclick="toggleShowDone()">顯示已完成</button>
+      </div>
+      <div id="d-order-list"><div class="order-card" id="d-ord-0">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-0&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26010502</div>
+          <div class="order-desc">NAPPA J2 · BLK · ETC 4/23</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/0批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 41325 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-0-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26010502&#39;,document.getElementById(&#39;d-ord-0-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;d-ord-0-batch-input&#39;)">新增</button>
+        </div>
+        <div style="padding:16px;color:var(--text3);font-size:14px;text-align:center">尚無批次，請新增批號</div>
+      </div>
+    </div><div class="order-card" id="d-ord-1">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-1&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26020903</div>
+          <div class="order-desc">NAPPA J2 · BLK · ETC 4/23</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/0批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 6925 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-1-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26020903&#39;,document.getElementById(&#39;d-ord-1-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;d-ord-1-batch-input&#39;)">新增</button>
+        </div>
+        <div style="padding:16px;color:var(--text3);font-size:14px;text-align:center">尚無批次，請新增批號</div>
+      </div>
+    </div><div class="order-card" id="d-ord-2">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-2&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26020903</div>
+          <div class="order-desc">NAPPA J2 · BLK · ETC 4/23</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/0批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 7800 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-2-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26020903&#39;,document.getElementById(&#39;d-ord-2-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;d-ord-2-batch-input&#39;)">新增</button>
+        </div>
+        <div style="padding:16px;color:var(--text3);font-size:14px;text-align:center">尚無批次，請新增批號</div>
+      </div>
+    </div><div class="order-card" id="d-ord-3">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-3&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26031701</div>
+          <div class="order-desc">NAPPA J2 · BLK · ETC 4/23</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/0批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 2900 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-3-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26031701&#39;,document.getElementById(&#39;d-ord-3-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;d-ord-3-batch-input&#39;)">新增</button>
+        </div>
+        <div style="padding:16px;color:var(--text3);font-size:14px;text-align:center">尚無批次，請新增批號</div>
+      </div>
+    </div><div class="order-card" id="d-ord-4">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-4&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26031003</div>
+          <div class="order-desc">DUBLIN · 0800374 · ETC 4/23</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/5批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 20000 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-4-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26031003&#39;,document.getElementById(&#39;d-ord-4-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800374&#39;,&#39;d-ord-4-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge">1305</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1305&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1305&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1306</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1306&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1306&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1307</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1307&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1307&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1308</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1308&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1308&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1309</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1309&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1309&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="d-ord-5">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-5&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26032001</div>
+          <div class="order-desc">DUBLIN · 0800374 · ETC 4/23</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 425 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-5-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26032001&#39;,document.getElementById(&#39;d-ord-5-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800374&#39;,&#39;d-ord-5-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge">No produce</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26032001&#39;,&#39;No produce&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;No produce&#39;,&#39;AC1-26032001&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="d-ord-6">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-6&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26033004</div>
+          <div class="order-desc">DUBLIN · 1200248 · ETC 4/27</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/5批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 18900 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-6-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26033004&#39;,document.getElementById(&#39;d-ord-6-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;1200248&#39;,&#39;d-ord-6-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge">1325</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1325&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1325&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1326</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1326&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1326&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1327</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1327&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1327&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1328</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1328&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1328&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1329</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1329&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1329&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="d-ord-7">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-7&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26033004</div>
+          <div class="order-desc">DUBLIN · 0800982 · ETC 4/27</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 2500 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-7-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26033004&#39;,document.getElementById(&#39;d-ord-7-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800982&#39;,&#39;d-ord-7-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge">No produce</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;No produce&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;No produce&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="d-ord-8">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-8&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26033004</div>
+          <div class="order-desc">DUBLIN · GR07-19AW · ETC 4/27</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 25 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-8-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26033004&#39;,document.getElementById(&#39;d-ord-8-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;GR07-19AW&#39;,&#39;d-ord-8-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="d-ord-9">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-9&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26033004</div>
+          <div class="order-desc">DUBLIN · 15-0955TP · ETC 4/27</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 25 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-9-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26033004&#39;,document.getElementById(&#39;d-ord-9-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;15-0955TP&#39;,&#39;d-ord-9-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="d-ord-10">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-10&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26031904</div>
+          <div class="order-desc">DUBLIN · PK26-20AW · ETC 4/30</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 1025 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-10-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26031904&#39;,document.getElementById(&#39;d-ord-10-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;PK26-20AW&#39;,&#39;d-ord-10-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031904&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26031904&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="d-ord-11">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-11&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26040104</div>
+          <div class="order-desc">DUBLIN · 0800374 · ETC 4/30</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 3450 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-11-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;d-ord-11-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800374&#39;,&#39;d-ord-11-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="d-ord-12">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-12&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26040104</div>
+          <div class="order-desc">DUBLIN · 0800982 · ETC 4/30</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 13650 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-12-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;d-ord-12-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800982&#39;,&#39;d-ord-12-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="d-ord-13">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-13&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26040104</div>
+          <div class="order-desc">NAPPA J2 · 18-1312TPG · ETC 4/30</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 150 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-13-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;d-ord-13-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;18-1312TPG&#39;,&#39;d-ord-13-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="d-ord-14">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-14&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26012104</div>
+          <div class="order-desc">DUBLIN · GN63-22AW · ETC 4/30</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 250 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-14-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26012104&#39;,document.getElementById(&#39;d-ord-14-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;GN63-22AW&#39;,&#39;d-ord-14-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26012104&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26012104&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="d-ord-15">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-15&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26040104</div>
+          <div class="order-desc">DUBLIN · YL02-19S · ETC 4/30</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/1批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 4100 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-15-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;d-ord-15-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;YL02-19S&#39;,&#39;d-ord-15-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="order-card" id="d-ord-16">
+      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-16&#39;)">
+        <div class="order-info">
+          <div class="order-no">AC1-26040104</div>
+          <div class="order-desc">NAPPA J2 · BLK · ETC 4/30</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">0/2批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+          <div class="progress-text">已驗呎數 0 / 下單 2175 呎 (0%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="d-ord-16-batch-input">
+          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;d-ord-16-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;d-ord-16-batch-input&#39;)">新增</button>
+        </div>
+        <div class="batch-row">
+          <div class="batch-no-badge"></div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div><div class="batch-row">
+          <div class="batch-no-badge">1234</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;1234&#39;)" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch(&#39;1234&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    </div>
+    <div class="desktop-form">
+      <div class="form-section">
+        <div class="form-section-title">驗貨記錄</div>
+        <div class="edit-banner" id="d-edit-banner">✏️ 編輯模式</div>
+        <div class="prefill-info" id="d-prefill"></div>
+        <div class="form-group"><label>訂單號碼</label><select id="d-orderNo" onchange="onOrderChange(&#39;d&#39;)"><option value="">請選擇</option><option value="AC1-26010502">AC1-26010502 — NAPPA J2 — BLK</option><option value="AC1-26020903">AC1-26020903 — NAPPA J2 — BLK</option><option value="AC1-26020903">AC1-26020903 — NAPPA J2 — BLK</option><option value="AC1-26031701">AC1-26031701 — NAPPA J2 — BLK</option><option value="AC1-26031003">AC1-26031003 — DUBLIN — 0800374</option><option value="AC1-26032001">AC1-26032001 — DUBLIN — 0800374</option><option value="AC1-26033004">AC1-26033004 — DUBLIN — 1200248</option><option value="AC1-26033004">AC1-26033004 — DUBLIN — 0800982</option><option value="AC1-26033004">AC1-26033004 — DUBLIN — GR07-19AW</option><option value="AC1-26033004">AC1-26033004 — DUBLIN — 15-0955TP</option><option value="AC1-26031904">AC1-26031904 — DUBLIN — PK26-20AW</option><option value="AC1-26040104">AC1-26040104 — DUBLIN — 0800374</option><option value="AC1-26040104">AC1-26040104 — DUBLIN — 0800982</option><option value="AC1-26040104">AC1-26040104 — NAPPA J2 — 18-1312TPG</option><option value="AC1-26012104">AC1-26012104 — DUBLIN — GN63-22AW</option><option value="AC1-26040104">AC1-26040104 — DUBLIN — YL02-19S</option><option value="AC1-26040104">AC1-26040104 — NAPPA J2 — BLK</option></select></div>
+        <div class="form-row">
+          <div><label>皮廠批號</label><select id="d-batchNo"><option value="">請選批號</option></select></div>
+          <div><label>驗貨日期</label><input type="date" id="d-date"></div>
+        </div>
+        <div class="form-group"><label>驗貨員</label>
+          <select id="d-inspector"><option value="">請選擇</option><option>Johnny</option><option>Ellen</option><option>Nicole</option></select>
+        </div>
+        <div class="form-section-title" style="margin-top:4px">外觀檢驗</div>
+        <div class="check-grid" id="d-checks">
+          <div class="check-item" onclick="toggleCheck(this,&#39;d&#39;,&#39;color&#39;)" data-key="color"><span class="check-label">顏色</span><span class="check-toggle">？</span></div>
+          <div class="check-item" onclick="toggleCheck(this,&#39;d&#39;,&#39;physical&#39;)" data-key="physical"><span class="check-label">物性</span><span class="check-toggle">？</span></div>
+          <div class="check-item" onclick="toggleCheck(this,&#39;d&#39;,&#39;softness&#39;)" data-key="softness"><span class="check-label">軟度</span><span class="check-toggle">？</span></div>
+          <div class="check-item" onclick="toggleCheck(this,&#39;d&#39;,&#39;texture&#39;)" data-key="texture"><span class="check-label">紋路</span><span class="check-toggle">？</span></div>
+          <div class="check-item" onclick="toggleCheck(this,&#39;d&#39;,&#39;backing&#39;)" data-key="backing"><span class="check-label">背毛</span><span class="check-toggle">？</span></div>
+          <div class="check-item" onclick="toggleCheck(this,&#39;d&#39;,&#39;thickness&#39;)" data-key="thickness"><span class="check-label">厚度</span><span class="check-toggle">？</span></div>
+        </div>
+        <div class="form-section-title" style="margin-top:4px">張數</div>
+        <div class="qty-grid">
+          <div><label>合格（張）</label><div class="qty-wrap"><input type="number" id="d-qtyPass" min="0"><span class="qty-unit">張</span></div></div>
+          <div><label>不合格（張）</label><div class="qty-wrap"><input type="number" id="d-qtyFail" min="0"><span class="qty-unit">張</span></div></div>
+        </div>
+        <div class="form-group"><label>備註</label><textarea id="d-note"></textarea></div>
+        <div id="d-btn-area"><button class="btn btn-primary btn-full" onclick="addRecord()">＋ 新增記錄</button></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end app-content -->
+
+<!-- BOTTOM NAV -->
+<nav class="app-nav">
+  <button class="nav-item active" id="nav-orders" onclick="showPage(&#39;orders&#39;)">
+    <span class="nav-icon">📦</span>訂單
+  </button>
+  <button class="nav-item" id="nav-inspect" onclick="showPage(&#39;inspect&#39;)">
+    <span class="nav-icon">✍️</span>驗貨
+  </button>
+</nav>
+
+</div><!-- end app -->
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzYza6Tc32bz3JuCgRwxm4XDAlcYBdto-hntLzQyO0cWtttgLEKhPaYnF-sAKzLrfym/exec';
+const today = new Date().toISOString().split('T')[0];
+
+let orders=[], batches=[], records=[];
+let checksM={color:'',physical:'',softness:'',texture:'',backing:'',thickness:''};
+let checksD={color:'',physical:'',softness:'',texture:'',backing:'',thickness:''};
+let editingId=null;
+
+document.getElementById('m-date').value=today;
+document.getElementById('d-date').value=today;
+
+// STATUS
+function showStatus(msg,type='info') {
+  const bar=document.getElementById('sync-bar');
+  bar.style.background=type==='error'?'#9B1C1C':type==='ok'?'#1A6B45':'#7C3D12';
+  bar.style.color='#fff'; bar.style.opacity='1'; bar.textContent=msg;
+  if(type!=='loading') setTimeout(()=>bar.style.opacity='0',2500);
+}
+
+// API - JSONP
+async function apiCall(params,retries=3) {
+  const url=new URL(SCRIPT_URL);
+  Object.entries(params).forEach(([k,v])=>url.searchParams.set(k,typeof v==='object'?JSON.stringify(v):v));
+  for(let attempt=1;attempt<=retries;attempt++){
+    try {
+      return await new Promise((resolve,reject)=>{
+        const cb='cb_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+        url.searchParams.set('callback',cb);
+        const script=document.createElement('script');
+        script.src=url.toString();
+        const timer=setTimeout(()=>{
+          delete window[cb];
+          if(document.body.contains(script)) document.body.removeChild(script);
+          reject(new Error('timeout'));
+        },20000);
+        window[cb]=(data)=>{
+          clearTimeout(timer);
+          delete window[cb];
+          if(document.body.contains(script)) document.body.removeChild(script);
+          resolve(data);
+        };
+        script.onerror=()=>{
+          clearTimeout(timer);
+          delete window[cb];
+          if(document.body.contains(script)) document.body.removeChild(script);
+          reject(new Error('script error'));
+        };
+        document.body.appendChild(script);
+      });
+    } catch(e) {
+      if(attempt===retries) throw e;
+      await new Promise(r=>setTimeout(r,1500));
+    }
+  }
+}
+
+// LOAD
+async function loadAll() {
+  showStatus('⏳ 載入訂單...','loading');
+  try {
+    const oRes=await apiCall({action:'getOrders'});
+    orders=oRes.rows&&oRes.rows.length>1?oRes.rows.slice(1).map(r=>({deadline:r[0],orderNo:r[1],material:r[2],color:r[3],qty:r[4],shipped:r[5],status:r[6]})):[];
+    renderAll();
+    showStatus('⏳ 載入批次...','loading');
+    const bRes=await apiCall({action:'getBatches'});
+    batches=bRes.rows&&bRes.rows.length>1?bRes.rows.slice(1).map(r=>({batchNo:r[0],orderNo:r[1],material:r[2],color:r[3]})):[];
+    renderAll();
+    showStatus('⏳ 載入記錄...','loading');
+    const rRes=await apiCall({action:'getRecords'});
+    records=rRes.rows&&rRes.rows.length>1?rRes.rows.slice(1).map(r=>({
+      id:r[0],batchNo:r[1],orderNo:r[2],date:fmtDate(r[3]),
+      inspector:r[4],color:r[5],physical:r[6],softness:r[7],
+      texture:r[8],backing:r[9],thickness:r[10],
+      qtyPass:Number(r[11])||0,qtyFail:Number(r[12])||0,footage:r[13]||'',note:r[14]||''
+    })):[];
+    showStatus('✓ 資料已同步','ok');
+    renderAll();
+  } catch(e) {
+    showStatus('⚠️ 連線失敗，請點此重試','error');
+    const bar=document.getElementById('sync-bar');
+    bar.style.opacity='1'; bar.style.pointerEvents='auto'; bar.style.cursor='pointer';
+    bar.onclick=()=>{bar.style.pointerEvents='none';// DELETE BATCH
+async function deleteBatch(batchNo, orderNo) {
+  if(!confirm(`確定要刪除批號 ${batchNo}？相關驗貨記錄也會一併刪除。`)) return;
+  
+  // Remove from local data
+  const relatedRecords = records.filter(r => r.batchNo === batchNo && r.orderNo === orderNo);
+  batches = batches.filter(b => !(b.batchNo === batchNo && b.orderNo === orderNo));
+  records = records.filter(r => !(r.batchNo === batchNo && r.orderNo === orderNo));
+  renderAll();
+  
+  showStatus('⏳ 刪除中...', 'loading');
+  try {
+    // Delete related records first
+    for (const r of relatedRecords) {
+      await apiCall({action:'deleteRecord', id: r.id});
+    }
+    // Delete batch
+    await apiCall({action:'deleteBatch', batchNo, orderNo});
+    showStatus('✓ 批號已刪除', 'ok');
+  } catch(e) {
+    showStatus('⚠️ 刪除失敗', 'error');
+  }
+}
+
+// FILTER STATE
+let showDone = false;
+let filterYear = '';
+let filterMonth = '';
+
+function getOrderYear(o) {
+  // Extract year from orderNo: AC1-26010502 -> 26 -> 2026
+  const match = o.orderNo.match(/-(\d{2})(\d{2})/);
+  return match ? '20' + match[1] : '';
+}
+
+function getOrderMonth(o) {
+  // Extract month from orderNo: AC1-26010502 -> 01
+  const match = o.orderNo.match(/-(\d{2})(\d{2})/);
+  return match ? match[2] : '';
+}
+
+function getFilteredOrders() {
+  return orders.filter(o => {
+    if (!showDone && o.status === '已完成') return false;
+    if (filterYear && getOrderYear(o) !== filterYear) return false;
+    if (filterMonth && getOrderMonth(o) !== filterMonth) return false;
+    return true;
+  });
+}
+
+function applyFilter(src) {
+  // Read from whichever side triggered the change
+  const p = src || (window.innerWidth >= 1024 ? 'd' : 'm');
+  const fyEl = document.getElementById(p+'-filter-year');
+  const fmEl = document.getElementById(p+'-filter-month');
+  if(fyEl) filterYear = fyEl.value;
+  if(fmEl) filterMonth = fmEl.value;
+  // Sync to the other side
+  const other = p === 'm' ? 'd' : 'm';
+  const ofy = document.getElementById(other+'-filter-year');
+  const ofm = document.getElementById(other+'-filter-month');
+  if(ofy) ofy.value = filterYear;
+  if(ofm) ofm.value = filterMonth;
+  renderAll();
+}
+
+function toggleShowDone() {
+  showDone = !showDone;
+  document.querySelectorAll('#m-show-done, #d-show-done').forEach(btn => {
+    btn.classList.toggle('active', showDone);
+    btn.textContent = showDone ? '隱藏已完成' : '顯示已完成';
+  });
+  renderAll();
+}
+
+function updateYearFilter() {
+  const years = [...new Set(orders.map(o => getOrderYear(o)).filter(Boolean))].sort();
+  const opts = '<option value="">全部年份</option>' + years.map(y => `<option value="${y}">${y}年</option>`).join('');
+  ['m','d'].forEach(p => {
+    const el = document.getElementById(p+'-filter-year');
+    if(el) { el.innerHTML = opts; el.value = filterYear; }
+  });
+}
+
+loadAll();};
+  }
+}
+
+function fmtDate(d){if(!d)return'';return String(d).match(/^(\d{4}-\d{2}-\d{2})/)?.[1]||String(d);}
+
+// NAV
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.getElementById('nav-'+name).classList.add('active');
+  document.querySelector('.app-content').scrollTo({top:0,behavior:'smooth'});
+}
+
+// ORDER CHANGE
+function onOrderChange(p){
+  const orderNo=document.getElementById(p+'-orderNo').value;
+  const bSel=document.getElementById(p+'-batchNo');
+  bSel.innerHTML='<option value="">請選批號</option>';
+  batches.filter(b=>b.orderNo===orderNo).forEach(b=>{
+    const o=document.createElement('option');
+    o.value=b.batchNo; o.textContent=b.batchNo; bSel.appendChild(o);
+  });
+  const order=orders.find(o=>o.orderNo===orderNo);
+  const el=document.getElementById(p+'-prefill');
+  if(order){el.style.display='block';el.innerHTML=`<b>${order.material}</b> · ${order.color} · 下單：${order.qty}呎`;}
+  else el.style.display='none';
+}
+
+function goInspect(orderNo,batchNo){
+  ['m','d'].forEach(p=>{
+    document.getElementById(p+'-orderNo').value=orderNo;
+    onOrderChange(p);
+    setTimeout(()=>{
+      document.getElementById(p+'-batchNo').value=batchNo;
+      const order=orders.find(o=>o.orderNo===orderNo);
+      const el=document.getElementById(p+'-prefill');
+      if(order){el.style.display='block';el.innerHTML=`<b>${order.orderNo}</b> · ${order.material} · ${order.color}<br>批號：<b>${batchNo}</b>`;}
+    },50);
+  });
+  showPage('inspect');
+}
+
+// CHECKS
+function toggleCheck(el,p,key){
+  const checks=p==='m'?checksM:checksD;
+  checks[key]=checks[key]===''?'pass':checks[key]==='pass'?'fail':'';
+  el.className='check-item'+(checks[key]?' '+checks[key]:'');
+  el.querySelector('.check-toggle').textContent=checks[key]==='pass'?'✓':checks[key]==='fail'?'✗':'？';
+}
+function resetChecks(p){
+  const checks=p==='m'?checksM:checksD;
+  Object.keys(checks).forEach(k=>checks[k]='');
+  document.querySelectorAll('#'+p+'-checks .check-item').forEach(el=>{
+    el.className='check-item'; el.querySelector('.check-toggle').textContent='？';
+  });
+}
+function setChecks(p,vals){
+  const checks=p==='m'?checksM:checksD;
+  ['color','physical','softness','texture','backing','thickness'].forEach(k=>{
+    checks[k]=vals[k]||'';
+    const el=document.querySelector('#'+p+'-checks [data-key="'+k+'"]');
+    if(el){el.className='check-item'+(checks[k]?' '+checks[k]:'');el.querySelector('.check-toggle').textContent=checks[k]==='pass'?'✓':checks[k]==='fail'?'✗':'？';}
+  });
+}
+
+// FORM
+function getFormData(){
+  const isMobile=!document.querySelector('.desktop-wrap') || window.getComputedStyle(document.querySelector('.desktop-wrap')).display==='none';
+  const p=isMobile?'m':'d';
+  const checks=p==='m'?checksM:checksD;
+  return {
+    orderNo:document.getElementById(p+'-orderNo').value,
+    batchNo:document.getElementById(p+'-batchNo').value,
+    date:document.getElementById(p+'-date').value,
+    inspector:document.getElementById(p+'-inspector').value,
+    ...checks,
+    qtyPass:parseFloat(document.getElementById(p+'-qtyPass').value)||0,
+    qtyFail:parseFloat(document.getElementById(p+'-qtyFail').value)||0,
+    note:document.getElementById(p+'-note').value.trim()
+  };
+}
+function clearForm(){
+  ['m','d'].forEach(p=>{
+    document.getElementById(p+'-orderNo').value='';
+    document.getElementById(p+'-batchNo').innerHTML='<option value="">請選批號</option>';
+    document.getElementById(p+'-prefill').style.display='none';
+    document.getElementById(p+'-date').value=today;
+    document.getElementById(p+'-inspector').value='';
+    document.getElementById(p+'-qtyPass').value='';
+    document.getElementById(p+'-qtyFail').value='';
+    document.getElementById(p+'-note').value='';
+    resetChecks(p);
+  });
+}
+function fillForm(r){
+  ['m','d'].forEach(p=>{
+    document.getElementById(p+'-orderNo').value=r.orderNo||'';
+    onOrderChange(p);
+    setTimeout(()=>document.getElementById(p+'-batchNo').value=r.batchNo||'',100);
+    document.getElementById(p+'-date').value=r.date||today;
+    document.getElementById(p+'-inspector').value=r.inspector||'';
+    document.getElementById(p+'-qtyPass').value=r.qtyPass||'';
+    document.getElementById(p+'-qtyFail').value=r.qtyFail||'';
+    document.getElementById(p+'-note').value=r.note||'';
+    setChecks(p,r);
+  });
+}
+function setEditMode(on){
+  ['m','d'].forEach(p=>{
+    document.getElementById(p+'-edit-banner').style.display=on?'block':'none';
+    document.getElementById(p+'-btn-area').innerHTML=on
+      ?`<button class="btn btn-success btn-full" onclick="saveEdit()">✓ 儲存修改</button><button class="btn btn-outline btn-full" style="margin-top:8px" onclick="cancelEdit()">取消</button>`
+      :`<button class="btn btn-primary btn-full" onclick="addRecord()">＋ ${p==='m'?'新增驗貨記錄':'新增記錄'}</button>`;
+  });
+}
+
+// CRUD
+async function addRecord(){
+  const data=getFormData();
+  if(!data.orderNo||!data.batchNo){alert('請選擇訂單與批號');return;}
+  if(!data.inspector){alert('請選擇驗貨員');return;}
+  if(data.qtyPass===0&&data.qtyFail===0){alert('請填寫張數');return;}
+  const record={id:Date.now(),footage:'',...data};
+  records.push(record); clearForm(); renderAll(); showPage('orders');
+  showStatus('⏳ 同步中...','loading');
+  try{await apiCall({action:'addRecord',data:record});showStatus('✓ 已同步','ok');}
+  catch(e){showStatus('⚠️ 同步失敗','error');}
+}
+function editRecord(id){
+  const r=records.find(r=>String(r.id)===String(id)); if(!r) return;
+  editingId=id; fillForm(r); setEditMode(true); showPage('inspect');
+  document.querySelector('.app-content').scrollTo({top:0,behavior:'smooth'});
+}
+async function saveEdit(){
+  const data=getFormData();
+  if(!data.orderNo||!data.batchNo){alert('請選擇訂單與批號');return;}
+  const record={id:editingId,footage:records.find(r=>String(r.id)===String(editingId))?.footage||'',...data};
+  const idx=records.findIndex(r=>String(r.id)===String(editingId));
+  if(idx!==-1) records[idx]=record;
+  editingId=null; clearForm(); setEditMode(false); renderAll(); showPage('orders');
+  showStatus('⏳ 儲存中...','loading');
+  try{await apiCall({action:'updateRecord',data:record});showStatus('✓ 已儲存','ok');}
+  catch(e){showStatus('⚠️ 儲存失敗','error');}
+}
+function cancelEdit(){editingId=null;clearForm();setEditMode(false);}
+async function deleteRecord(id){
+  if(!confirm('確定要刪除？')) return;
+  records=records.filter(r=>String(r.id)!==String(id)); renderAll();
+  showStatus('⏳ 刪除中...','loading');
+  try{await apiCall({action:'deleteRecord',id});showStatus('✓ 已刪除','ok');}
+  catch(e){showStatus('⚠️ 刪除失敗','error');}
+}
+async function saveFootage(id,val){
+  const idx=records.findIndex(r=>String(r.id)===String(id));
+  if(idx!==-1) records[idx].footage=val;
+  showStatus('⏳ 更新中...','loading');
+  try{await apiCall({action:'updateFootage',data:{id,footage:val}});showStatus('✓ 呎數已更新','ok');}
+  catch(e){showStatus('⚠️ 更新失敗','error');}
+}
+async function addBatch(orderNo,batchNo,material,color,inputId){
+  if(!batchNo.trim()){alert('請輸入批號');return;}
+  if(batches.find(b=>b.batchNo===batchNo&&b.orderNo===orderNo)){alert('此批號已存在');return;}
+  const b={batchNo:batchNo.trim(),orderNo,material,color};
+  batches.push(b); renderAll();
+  document.getElementById(inputId).value='';
+  showStatus('⏳ 同步中...','loading');
+  try{await apiCall({action:'addBatch',data:b});showStatus('✓ 批號已新增','ok');}
+  catch(e){showStatus('⚠️ 同步失敗','error');}
+}
+
+// TOGGLE ORDER
+function toggleOrder(uid){
+  const card=document.getElementById(uid);
+  const body=card.querySelector('.order-card-body');
+  const chevron=card.querySelector('.chevron');
+  const isOpen=card.classList.contains('open');
+  card.classList.toggle('open');
+  if(body) body.style.display=isOpen?'none':'block';
+  if(chevron) chevron.textContent=isOpen?'▼':'▲';
+}
+
+// RENDER
+function chkTag(v,label){
+  const cls=v==='pass'?'pass':v==='fail'?'fail':'na';
+  const sym=v==='pass'?'✓':v==='fail'?'✗':'—';
+  return `<span class="ctag ${cls}">${label}${sym}</span>`;
+}
+
+function renderOrderCards(elId){
+  const el=document.getElementById(elId);
+  if(!orders.length){el.innerHTML='<div class="empty"><div class="empty-icon">📦</div><div class="empty-text">尚無訂單資料</div></div>';return;}
+  const prefix=elId.startsWith('d')?'d':'m';
+  const filteredOrders = getFilteredOrders();
+  if(!filteredOrders.length){el.innerHTML='<div class="empty"><div class="empty-icon">🔍</div><div class="empty-text">沒有符合條件的訂單</div></div>';return;}
+  el.innerHTML=filteredOrders.map((o,oi)=>{
+    const uid=prefix+'-ord-'+oi;
+    const ob=batches.filter(b=>b.orderNo===o.orderNo&&b.color===o.color);
+    const inspected=ob.filter(b=>records.some(r=>r.batchNo===b.batchNo&&r.orderNo===o.orderNo));
+    const totalFt=records.filter(r=>r.orderNo===o.orderNo&&r.batchNo&&ob.some(b=>b.batchNo===r.batchNo)).reduce((s,r)=>s+(Number(r.footage)||0),0);
+    const pct=o.qty?Math.min(100,Math.round(totalFt/Number(o.qty)*100)):0;
+    const inputId=uid+'-batch-input';
+
+    const batchRows=ob.map(b=>{
+      const rec=records.find(r=>r.batchNo===b.batchNo&&r.orderNo===o.orderNo);
+      if(rec){
+        return `<div class="batch-row">
+          <div class="batch-no-badge">${b.batchNo}</div>
+          <div class="batch-info">
+            <div class="batch-results">
+              <span class="batch-pass">✓ ${rec.qtyPass}張</span>
+              <span class="batch-fail">✗ ${rec.qtyFail}張</span>
+              ${rec.footage?`<span style="font-size:12px;color:var(--text3);font-family:'DM Mono',monospace">${rec.footage}呎</span>`:''}
+            </div>
+            <div class="batch-checks">
+              ${chkTag(rec.color,'顏色')}${chkTag(rec.physical,'物性')}${chkTag(rec.softness,'軟度')}
+              ${chkTag(rec.texture,'紋路')}${chkTag(rec.backing,'背毛')}${chkTag(rec.thickness,'厚度')}
+            </div>
+            ${!rec.footage?`<div class="footage-row">
+              <input type="number" placeholder="補填呎數" id="ft-${rec.id}" value="${rec.footage||''}" inputmode="numeric">
+              <button class="btn btn-success" onclick="saveFootage('${rec.id}',document.getElementById('ft-${rec.id}').value)" style="padding:9px 14px">更新</button>
+            </div>`:''}
+          </div>
+          <div class="batch-actions">
+            <button class="btn btn-outline" onclick="editRecord('${rec.id}')" style="padding:8px 12px">✏️</button>
+            <button class="btn btn-danger" onclick="deleteBatch('${b.batchNo}','${o.orderNo}')" style="padding:8px 12px">🗑️</button>
+          </div>
+        </div>`;
+      } else {
+        return `<div class="batch-row">
+          <div class="batch-no-badge">${b.batchNo}</div>
+          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
+          <div class="batch-actions">
+            <button class="btn btn-primary" onclick="goInspect('${o.orderNo}','${b.batchNo}')" style="padding:9px 16px">驗貨</button>
+            <button class="btn btn-danger" onclick="deleteBatch('${b.batchNo}','${o.orderNo}')" style="padding:9px 12px">🗑️</button>
+          </div>
+        </div>`;
+      }
+    }).join('');
+
+    return `<div class="order-card" id="${uid}">
+      <div class="order-card-hd" onclick="toggleOrder('${uid}')">
+        <div class="order-info">
+          <div class="order-no">${o.orderNo}</div>
+          <div class="order-desc">${o.material} · ${o.color} · ${o.deadline}</div>
+        </div>
+        <div class="order-meta">
+          <span class="batch-count">${inspected.length}/${ob.length}批</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="order-card-body" style="display:none">
+        <div class="order-progress-bar-wrap">
+          <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+          <div class="progress-text">已驗呎數 ${totalFt} / 下單 ${o.qty} 呎 (${pct}%)</div>
+        </div>
+        <div class="add-batch-wrap">
+          <input type="text" placeholder="新增批號" id="${inputId}">
+          <button class="btn btn-primary" onclick="addBatch('${o.orderNo}',document.getElementById('${inputId}').value,'${o.material}','${o.color}','${inputId}')">新增</button>
+        </div>
+        ${batchRows||`<div style="padding:16px;color:var(--text3);font-size:14px;text-align:center">尚無批次，請新增批號</div>`}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function updateMetrics(){
+  const inspected=batches.filter(b=>records.some(r=>r.batchNo===b.batchNo&&r.orderNo===b.orderNo));
+  const todo=batches.length-inspected.length;
+  document.getElementById('mm-orders').textContent=orders.length;
+  document.getElementById('mm-batches').textContent=batches.length;
+  document.getElementById('mm-done').textContent=inspected.length;
+  document.getElementById('mm-todo').textContent=todo;
+  document.getElementById('d-orders').textContent=orders.length;
+  document.getElementById('d-batches').textContent=batches.length;
+  document.getElementById('d-done').textContent=inspected.length;
+  document.getElementById('d-todo').textContent=todo;
+}
+
+function updateSelects(){
+  const selectOrders = orders.filter(o => o.status !== '已完成');
+  const opts='<option value="">請選擇</option>'+selectOrders.map(o=>`<option value="${o.orderNo}">${o.orderNo} — ${o.material} — ${o.color}</option>`).join('');
+  document.getElementById('m-orderNo').innerHTML=opts;
+  document.getElementById('d-orderNo').innerHTML=opts;
+}
+
+function renderAll(){
+  updateMetrics();
+  updateSelects();
+  updateYearFilter();
+  renderOrderCards('m-order-list');
+  renderOrderCards('d-order-list');
+}
+
+function exportCSV(){
+  if(!records.length){alert('尚無記錄');return;}
+  const h=['日期','訂單號碼','批號','驗貨員','顏色','物性','軟度','紋路','背毛','厚度','合格張數','不合格張數','呎數','備註'];
+  const chk=v=>v==='pass'?'合格':v==='fail'?'不合格':'—';
+  const rows=[...records].sort((a,b)=>String(b.date).localeCompare(String(a.date))).map(r=>[
+    r.date,r.orderNo,r.batchNo,r.inspector,
+    chk(r.color),chk(r.physical),chk(r.softness),chk(r.texture),chk(r.backing),chk(r.thickness),
+    r.qtyPass,r.qtyFail,r.footage||'',r.note
+  ].map(v=>`"${(v||'').toString().replace(/"/g,'""')}"`).join(','));
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob(['\uFEFF'+[h.join(','),...rows].join('\n')],{type:'text/csv;charset=utf-8'}));
+  a.download=`驗貨記錄_${today}.csv`; a.click();
+}
+
+// DELETE BATCH
+async function deleteBatch(batchNo, orderNo) {
+  if(!confirm(`確定要刪除批號 ${batchNo}？相關驗貨記錄也會一併刪除。`)) return;
+  
+  // Remove from local data
+  const relatedRecords = records.filter(r => r.batchNo === batchNo && r.orderNo === orderNo);
+  batches = batches.filter(b => !(b.batchNo === batchNo && b.orderNo === orderNo));
+  records = records.filter(r => !(r.batchNo === batchNo && r.orderNo === orderNo));
+  renderAll();
+  
+  showStatus('⏳ 刪除中...', 'loading');
+  try {
+    // Delete related records first
+    for (const r of relatedRecords) {
+      await apiCall({action:'deleteRecord', id: r.id});
+    }
+    // Delete batch
+    await apiCall({action:'deleteBatch', batchNo, orderNo});
+    showStatus('✓ 批號已刪除', 'ok');
+  } catch(e) {
+    showStatus('⚠️ 刪除失敗', 'error');
+  }
+}
+
+// FILTER STATE
+let showDone = false;
+let filterYear = '';
+let filterMonth = '';
+
+function getOrderYear(o) {
+  // Extract year from orderNo: AC1-26010502 -> 26 -> 2026
+  const match = o.orderNo.match(/-(\d{2})(\d{2})/);
+  return match ? '20' + match[1] : '';
+}
+
+function getOrderMonth(o) {
+  // Extract month from orderNo: AC1-26010502 -> 01
+  const match = o.orderNo.match(/-(\d{2})(\d{2})/);
+  return match ? match[2] : '';
+}
+
+function getFilteredOrders() {
+  return orders.filter(o => {
+    if (!showDone && o.status === '已完成') return false;
+    if (filterYear && getOrderYear(o) !== filterYear) return false;
+    if (filterMonth && getOrderMonth(o) !== filterMonth) return false;
+    return true;
+  });
+}
+
+function applyFilter(src) {
+  // Read from whichever side triggered the change
+  const p = src || (window.innerWidth >= 1024 ? 'd' : 'm');
+  const fyEl = document.getElementById(p+'-filter-year');
+  const fmEl = document.getElementById(p+'-filter-month');
+  if(fyEl) filterYear = fyEl.value;
+  if(fmEl) filterMonth = fmEl.value;
+  // Sync to the other side
+  const other = p === 'm' ? 'd' : 'm';
+  const ofy = document.getElementById(other+'-filter-year');
+  const ofm = document.getElementById(other+'-filter-month');
+  if(ofy) ofy.value = filterYear;
+  if(ofm) ofm.value = filterMonth;
+  renderAll();
+}
+
+function toggleShowDone() {
+  showDone = !showDone;
+  document.querySelectorAll('#m-show-done, #d-show-done').forEach(btn => {
+    btn.classList.toggle('active', showDone);
+    btn.textContent = showDone ? '隱藏已完成' : '顯示已完成';
+  });
+  renderAll();
+}
+
+function updateYearFilter() {
+  const years = [...new Set(orders.map(o => getOrderYear(o)).filter(Boolean))].sort();
+  const opts = '<option value="">全部年份</option>' + years.map(y => `<option value="${y}">${y}年</option>`).join('');
+  ['m','d'].forEach(p => {
+    const el = document.getElementById(p+'-filter-year');
+    if(el) { el.innerHTML = opts; el.value = filterYear; }
+  });
+}
+
+loadAll();
+</script>
+
+
+</body></html>
