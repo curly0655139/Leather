@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0046)file:///C:/Users/curly/Downloads/index_51.html -->
+<!-- saved from url=(0046)file:///C:/Users/curly/Downloads/index_53.html -->
 <html lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -250,7 +250,7 @@ textarea { resize: none; height: 80px; font-size: 15px; }
   </div>
 </header>
 
-<div id="sync-bar" style="background: rgb(26, 107, 69); color: rgb(255, 255, 255); opacity: 0;">✓ 資料已同步</div>
+<div id="sync-bar"></div>
 
 <!-- CONTENT -->
 <div class="app-content">
@@ -259,7 +259,9 @@ textarea { resize: none; height: 80px; font-size: 15px; }
   <div id="page-orders" class="page active">
 
     <div class="filter-bar">
-      <select class="filter-select" id="m-filter-year" onchange="applyFilter(&#39;m&#39;)"><option value="">全部年份</option></select>
+      <select class="filter-select" id="m-filter-year" onchange="applyFilter(&#39;m&#39;)">
+        <option value="">全部年份</option>
+      </select>
       <select class="filter-select" id="m-filter-month" onchange="applyFilter(&#39;m&#39;)">
         <option value="">全部月份</option>
         <option value="01">1月</option><option value="02">2月</option><option value="03">3月</option>
@@ -270,7 +272,7 @@ textarea { resize: none; height: 80px; font-size: 15px; }
       <button class="filter-toggle" id="m-show-done" onclick="toggleShowDone()">顯示已完成</button>
       <button class="filter-toggle active" id="m-show-undone" onclick="toggleShowUndone()">未完成</button>
     </div>
-    <div id="m-order-list"><div class="empty"><div class="empty-icon">📦</div><div class="empty-text">尚無訂單資料</div></div></div>
+    <div id="m-order-list"><div class="empty"><div class="empty-icon">📦</div><div class="empty-text">載入中...</div></div></div>
   </div>
 
   <!-- MOBILE: 驗貨 -->
@@ -321,7 +323,9 @@ textarea { resize: none; height: 80px; font-size: 15px; }
 
     <div class="desktop-orders">
       <div class="filter-bar" style="margin-bottom:1rem">
-        <select class="filter-select" id="d-filter-year" onchange="applyFilter(&#39;d&#39;)"><option value="">全部年份</option></select>
+        <select class="filter-select" id="d-filter-year" onchange="applyFilter(&#39;d&#39;)">
+          <option value="">全部年份</option>
+        </select>
         <select class="filter-select" id="d-filter-month" onchange="applyFilter(&#39;d&#39;)">
           <option value="">全部月份</option>
           <option value="01">1月</option><option value="02">2月</option><option value="03">3月</option>
@@ -332,7 +336,7 @@ textarea { resize: none; height: 80px; font-size: 15px; }
         <button class="filter-toggle" id="d-show-done" onclick="toggleShowDone()">顯示已完成</button>
         <button class="filter-toggle active" id="d-show-undone" onclick="toggleShowUndone()">未完成</button>
       </div>
-      <div id="d-order-list"><div class="empty"><div class="empty-icon">📦</div><div class="empty-text">尚無訂單資料</div></div></div>
+      <div id="d-order-list"><div class="empty"><div class="empty-icon">📦</div><div class="empty-text">載入中...</div></div></div>
     </div>
     <div class="desktop-form">
       <div class="form-section">
@@ -439,31 +443,49 @@ async function apiCall(params,retries=3) {
 
 // LOAD
 async function loadAll() {
-  showStatus('⏳ 載入訂單...','loading');
+  showStatus('⏳ 載入資料中...','loading');
   try {
-    const oRes=await apiCall({action:'getOrders'});
-    orders=oRes.rows&&oRes.rows.length>1?oRes.rows.slice(1).map(r=>({deadline:r[0],orderNo:r[1],material:r[2],color:r[3],qty:r[4],shipped:r[5],status:r[6]})):[];
-    renderAll();
-    showStatus('⏳ 載入批次...','loading');
-    const bRes=await apiCall({action:'getBatches'});
-    batches=bRes.rows&&bRes.rows.length>1?bRes.rows.slice(1).map(r=>({batchNo:r[0],orderNo:r[1],material:r[2],color:r[3]})):[];
-    renderAll();
-    showStatus('⏳ 載入記錄...','loading');
-    const rRes=await apiCall({action:'getRecords'});
-    records=rRes.rows&&rRes.rows.length>1?rRes.rows.slice(1).map(r=>({
-      id:r[0],batchNo:r[1],orderNo:r[2],material:r[3]||'',orderColor:r[4]||'',
-      date:fmtDate(r[5]),inspector:r[6],
-      color:r[7],physical:r[8],softness:r[9],
-      texture:r[10],backing:r[11],thickness:r[12],
-      qtyPass:Number(r[13])||0,qtyFail:Number(r[14])||0,footage:r[15]||'',note:r[16]||''
-    })):[];
+    const res = await apiCall({action:'getAll'});
+    const rows = res.rows && res.rows.length > 0 ? res.rows : [];
+
+    // 欄位: 0:結關日 1:訂單號碼 2:材料 3:顏色 4:下單數量 5:批號
+    // 6:顏色檢驗 7:物性 8:軟度 9:紋路 10:背毛 11:厚度
+    // 12:合格張數 13:不合格張數 14:呎數 15:備註
+
+    const orderMap = {};
+    rows.forEach(r => {
+      const key = r[1]+'_'+r[2]+'_'+r[3];
+      if (!orderMap[key]) {
+        orderMap[key] = {deadline:r[0],orderNo:r[1],material:r[2],color:r[3],qty:r[4],status:''};
+      }
+    });
+    orders = Object.values(orderMap);
+
+    batches = rows.filter(r => r[5]).map(r => ({
+      batchNo:r[5], orderNo:r[1], material:r[2], color:r[3]
+    }));
+
+    records = rows.filter(r => r[5] && (r[12]||r[13])).map(r => ({
+      id: r[1]+'_'+r[5],
+      batchNo:r[5], orderNo:r[1], material:r[2], orderColor:r[3],
+      date:fmtDate(r[0]), inspector:'',
+      color:r[6], physical:r[7], softness:r[8],
+      texture:r[9], backing:r[10], thickness:r[11],
+      qtyPass:Number(r[12])||0, qtyFail:Number(r[13])||0,
+      footage:r[14]||'', note:r[15]||''
+    }));
+
     showStatus('✓ 資料已同步','ok');
     renderAll();
   } catch(e) {
     showStatus('⚠️ 連線失敗，請點此重試','error');
     const bar=document.getElementById('sync-bar');
     bar.style.opacity='1'; bar.style.pointerEvents='auto'; bar.style.cursor='pointer';
-    bar.onclick=()=>{bar.style.pointerEvents='none';// DELETE BATCH
+    bar.onclick=()=>{bar.style.pointerEvents='none';loadAll();};
+  }
+}
+
+// DELETE BATCH
 async function deleteBatch(batchNo, orderNo, color) {
   if(!confirm(`確定要刪除批號 ${batchNo}？相關驗貨記錄也會一併刪除。`)) return;
   batches = batches.filter(b => !(b.batchNo === batchNo && b.orderNo === orderNo));
