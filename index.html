@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0046)file:///C:/Users/curly/Downloads/index_50.html -->
+<!-- saved from url=(0046)file:///C:/Users/curly/Downloads/index_51.html -->
 <html lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -256,10 +256,10 @@ textarea { resize: none; height: 80px; font-size: 15px; }
 <div class="app-content">
 
   <!-- MOBILE: 訂單 -->
-  <div id="page-orders" class="page">
+  <div id="page-orders" class="page active">
 
     <div class="filter-bar">
-      <select class="filter-select" id="m-filter-year" onchange="applyFilter(&#39;m&#39;)"><option value="">全部年份</option><option value="2026">2026年</option></select>
+      <select class="filter-select" id="m-filter-year" onchange="applyFilter(&#39;m&#39;)"><option value="">全部年份</option></select>
       <select class="filter-select" id="m-filter-month" onchange="applyFilter(&#39;m&#39;)">
         <option value="">全部月份</option>
         <option value="01">1月</option><option value="02">2月</option><option value="03">3月</option>
@@ -268,1022 +268,21 @@ textarea { resize: none; height: 80px; font-size: 15px; }
         <option value="10">10月</option><option value="11">11月</option><option value="12">12月</option>
       </select>
       <button class="filter-toggle" id="m-show-done" onclick="toggleShowDone()">顯示已完成</button>
+      <button class="filter-toggle active" id="m-show-undone" onclick="toggleShowUndone()">未完成</button>
     </div>
-    <div id="m-order-list"><div class="order-card" id="m-ord-0">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-0&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26010502 <span style="font-size:11px;font-weight:700;color:#1A6B45;background:#E6F5EE;padding:2px 8px;border-radius:99px;margin-left:6px">✓ 驗貨完畢</span></div>
-          <div class="order-desc">NAPPA J2 · BLK · ETC 4/23 · <span style="color:var(--text2);font-weight:700">下單 41325 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">1/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 41325 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-0-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26010502&#39;,document.getElementById(&#39;m-ord-0-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;m-ord-0-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">STOCK</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 2000張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              <span style="font-size:12px;color:var(--text2);font-weight:700">｜之前與Ellen出差驗貨, 以此新增加入系統</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1778046178071" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1778046178071&#39;,document.getElementById(&#39;ft-1778046178071&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1778046178071&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;STOCK&#39;,&#39;AC1-26010502&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="m-ord-1">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-1&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26020903 </div>
-          <div class="order-desc">NAPPA J2 · BLK · ETC 4/23 · <span style="color:var(--text2);font-weight:700">下單 6925 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 6925 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-1-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26020903&#39;,document.getElementById(&#39;m-ord-1-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;m-ord-1-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">STOCK</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26020903&#39;,&#39;STOCK&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;STOCK&#39;,&#39;AC1-26020903&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="m-ord-2">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-2&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26020903 </div>
-          <div class="order-desc">NAPPA J2 · BLK · ETC 4/23 · <span style="color:var(--text2);font-weight:700">下單 7800 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 7800 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-2-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26020903&#39;,document.getElementById(&#39;m-ord-2-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;m-ord-2-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">STOCK</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26020903&#39;,&#39;STOCK&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;STOCK&#39;,&#39;AC1-26020903&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="m-ord-3">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-3&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26031701 </div>
-          <div class="order-desc">NAPPA J2 · BLK · ETC 4/23 · <span style="color:var(--text2);font-weight:700">下單 2900 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/0批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 2900 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-3-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26031701&#39;,document.getElementById(&#39;m-ord-3-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;m-ord-3-batch-input&#39;)">新增</button>
-        </div>
-        <div style="padding:16px;color:var(--text3);font-size:14px;text-align:center">尚無批次，請新增批號</div>
-      </div>
-    </div><div class="order-card" id="m-ord-4">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-4&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26031003 </div>
-          <div class="order-desc">DUBLIN · 0800374 · ETC 4/23 · <span style="color:var(--text2);font-weight:700">下單 20000 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">3/5批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 20000 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-4-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26031003&#39;,document.getElementById(&#39;m-ord-4-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800374&#39;,&#39;m-ord-4-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">1305</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 176張</span>
-              <span class="batch-fail">✗ 1張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777974003422" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777974003422&#39;,document.getElementById(&#39;ft-1777974003422&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777974003422&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1305&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1306</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 189張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777974032358" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777974032358&#39;,document.getElementById(&#39;ft-1777974032358&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777974032358&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1306&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1307</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 177張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777974054450" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777974054450&#39;,document.getElementById(&#39;ft-1777974054450&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777974054450&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1307&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1308</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1308&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1308&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1309</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1309&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1309&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="m-ord-5">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-5&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26031003 </div>
-          <div class="order-desc">DUBLIN · 1200248 ·  · <span style="color:var(--text2);font-weight:700">下單 60000 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">10/15批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 60000 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-5-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26031003&#39;,document.getElementById(&#39;m-ord-5-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;1200248&#39;,&#39;m-ord-5-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">1310</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1310&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1310&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1311</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 175張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777975454443" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777975454443&#39;,document.getElementById(&#39;ft-1777975454443&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777975454443&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1311&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1312</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 178張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777975605127" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777975605127&#39;,document.getElementById(&#39;ft-1777975605127&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777975605127&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1312&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1313</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 168張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1778033778510" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1778033778510&#39;,document.getElementById(&#39;ft-1778033778510&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1778033778510&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1313&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1314</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 179張</span>
-              <span class="batch-fail">✗ 1張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777975757939" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777975757939&#39;,document.getElementById(&#39;ft-1777975757939&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777975757939&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1314&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1315</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 175張</span>
-              <span class="batch-fail">✗ 2張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777975814427" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777975814427&#39;,document.getElementById(&#39;ft-1777975814427&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777975814427&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1315&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1316</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 160張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777975848115" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777975848115&#39;,document.getElementById(&#39;ft-1777975848115&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777975848115&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1316&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1317</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 177張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1778033681553" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1778033681553&#39;,document.getElementById(&#39;ft-1778033681553&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1778033681553&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1317&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1318</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 179張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1778033900845" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1778033900845&#39;,document.getElementById(&#39;ft-1778033900845&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1778033900845&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1318&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1319</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 158張</span>
-              <span class="batch-fail">✗ 10張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1778033934145" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1778033934145&#39;,document.getElementById(&#39;ft-1778033934145&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1778033934145&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1319&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1320</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 175張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1778033962710" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1778033962710&#39;,document.getElementById(&#39;ft-1778033962710&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1778033962710&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1320&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1321</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1321&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1321&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1322</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1322&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1322&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1323</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1323&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1323&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1324</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1324&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1324&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="m-ord-6">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-6&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26031005 </div>
-          <div class="order-desc">DUBLIN · 1200248 ·  · <span style="color:var(--text2);font-weight:700">下單 9650 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">2/3批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 9650 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-6-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26031005&#39;,document.getElementById(&#39;m-ord-6-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;1200248&#39;,&#39;m-ord-6-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">1302</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 147張</span>
-              <span class="batch-fail">✗ 1張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777975166059" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777975166059&#39;,document.getElementById(&#39;ft-1777975166059&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777975166059&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1302&#39;,&#39;AC1-26031005&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1303</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 143張</span>
-              <span class="batch-fail">✗ 1張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777975203475" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777975203475&#39;,document.getElementById(&#39;ft-1777975203475&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777975203475&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1303&#39;,&#39;AC1-26031005&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1304</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031005&#39;,&#39;1304&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1304&#39;,&#39;AC1-26031005&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="m-ord-7">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-7&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26032001 </div>
-          <div class="order-desc">DUBLIN · 0800374 · ETC 4/23 · <span style="color:var(--text2);font-weight:700">下單 425 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/0批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 425 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-7-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26032001&#39;,document.getElementById(&#39;m-ord-7-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800374&#39;,&#39;m-ord-7-batch-input&#39;)">新增</button>
-        </div>
-        <div style="padding:16px;color:var(--text3);font-size:14px;text-align:center">尚無批次，請新增批號</div>
-      </div>
-    </div><div class="order-card" id="m-ord-8">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-8&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26033004 </div>
-          <div class="order-desc">DUBLIN · 1200248 · ETC 4/27 · <span style="color:var(--text2);font-weight:700">下單 18900 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">1/6批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 18900 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-8-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26033004&#39;,document.getElementById(&#39;m-ord-8-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;1200248&#39;,&#39;m-ord-8-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">1325</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1325&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1325&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1326</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1326&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1326&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1327</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1327&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1327&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1328</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1328&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1328&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1329</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1329&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1329&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1302</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 147張</span>
-              <span class="batch-fail">✗ 1張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777974412215" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777974412215&#39;,document.getElementById(&#39;ft-1777974412215&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777974412215&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1302&#39;,&#39;AC1-26033004&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="m-ord-9">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-9&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26033004 </div>
-          <div class="order-desc">DUBLIN · 0800982 · ETC 4/27 · <span style="color:var(--text2);font-weight:700">下單 2500 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 2500 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-9-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26033004&#39;,document.getElementById(&#39;m-ord-9-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800982&#39;,&#39;m-ord-9-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">NO PRODUCE</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;NO PRODUCE&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;NO PRODUCE&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="m-ord-10">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-10&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26033004 </div>
-          <div class="order-desc">DUBLIN · GR07-19AW · ETC 4/27 · <span style="color:var(--text2);font-weight:700">下單 25 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 25 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-10-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26033004&#39;,document.getElementById(&#39;m-ord-10-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;GR07-19AW&#39;,&#39;m-ord-10-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">NO PRODUCE</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;NO PRODUCE&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;NO PRODUCE&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="m-ord-11">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-11&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26033004 </div>
-          <div class="order-desc">DUBLIN · 15-0955TP · ETC 4/27 · <span style="color:var(--text2);font-weight:700">下單 25 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 25 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-11-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26033004&#39;,document.getElementById(&#39;m-ord-11-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;15-0955TP&#39;,&#39;m-ord-11-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">NO PRODUCE</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;NO PRODUCE&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;NO PRODUCE&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="m-ord-12">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-12&#39;)">
-        <div class="order-info">
-          <div class="order-no">2023年試做 </div>
-          <div class="order-desc">NAPPA J2 · BLK · ETC 4/27 · <span style="color:var(--text2);font-weight:700">下單 3000 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 3000 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-12-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;2023年試做&#39;,document.getElementById(&#39;m-ord-12-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;m-ord-12-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">2023 年試做</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;2023年試做&#39;,&#39;2023 年試做&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;2023 年試做&#39;,&#39;2023年試做&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="m-ord-13">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-13&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26031904 <span style="font-size:11px;font-weight:700;color:#1A6B45;background:#E6F5EE;padding:2px 8px;border-radius:99px;margin-left:6px">✓ 驗貨完畢</span></div>
-          <div class="order-desc">DUBLIN · PK26-20AW · ETC 4/30 · <span style="color:var(--text2);font-weight:700">下單 1025 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">1/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 1025 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-13-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26031904&#39;,document.getElementById(&#39;m-ord-13-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;PK26-20AW&#39;,&#39;m-ord-13-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">COL-290</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 49張</span>
-              <span class="batch-fail">✗ 1張</span>
-              
-              <span style="font-size:12px;color:var(--text2);font-weight:700">｜一張鬆面打掉, 約五張有血管放入一起出</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777974574778" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777974574778&#39;,document.getElementById(&#39;ft-1777974574778&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777974574778&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;COL-290&#39;,&#39;AC1-26031904&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="m-ord-14">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-14&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26040104 </div>
-          <div class="order-desc">DUBLIN · 0800374 · ETC 4/30 · <span style="color:var(--text2);font-weight:700">下單 3450 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 3450 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-14-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;m-ord-14-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800374&#39;,&#39;m-ord-14-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">NO PRODUCE</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;NO PRODUCE&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;NO PRODUCE&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="m-ord-15">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-15&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26040104 </div>
-          <div class="order-desc">DUBLIN · 0800982 · ETC 4/30 · <span style="color:var(--text2);font-weight:700">下單 13650 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/3批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 13650 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-15-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;m-ord-15-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800982&#39;,&#39;m-ord-15-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">1330</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;1330&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1330&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1331</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;1331&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1331&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1332</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;1332&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1332&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="m-ord-16">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-16&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26040104 <span style="font-size:11px;font-weight:700;color:#1A6B45;background:#E6F5EE;padding:2px 8px;border-radius:99px;margin-left:6px">✓ 驗貨完畢</span></div>
-          <div class="order-desc">NAPPA J2 · 18-1312TPG · ETC 4/30 · <span style="color:var(--text2);font-weight:700">下單 150 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">1/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 150 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-16-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;m-ord-16-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;18-1312TPG&#39;,&#39;m-ord-16-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">N-185</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 9張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1778044587559" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1778044587559&#39;,document.getElementById(&#39;ft-1778044587559&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1778044587559&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;N-185&#39;,&#39;AC1-26040104&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="m-ord-17">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-17&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26012104 </div>
-          <div class="order-desc">DUBLIN · GN63-22AW · ETC 4/30 · <span style="color:var(--text2);font-weight:700">下單 250 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/0批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 250 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-17-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26012104&#39;,document.getElementById(&#39;m-ord-17-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;GN63-22AW&#39;,&#39;m-ord-17-batch-input&#39;)">新增</button>
-        </div>
-        <div style="padding:16px;color:var(--text3);font-size:14px;text-align:center">尚無批次，請新增批號</div>
-      </div>
-    </div><div class="order-card" id="m-ord-18">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-18&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26040104 </div>
-          <div class="order-desc">DUBLIN · YL02-19S · ETC 4/30 · <span style="color:var(--text2);font-weight:700">下單 4100 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 4100 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-18-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;m-ord-18-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;YL02-19S&#39;,&#39;m-ord-18-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">1333</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;1333&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1333&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="m-ord-19">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;m-ord-19&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26040104 </div>
-          <div class="order-desc">NAPPA J2 · BLK · ETC 4/30 · <span style="color:var(--text2);font-weight:700">下單 2175 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/2批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 2175 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="m-ord-19-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;m-ord-19-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;m-ord-19-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">N-186</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;N-186&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;N-186&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">N-187</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;N-187&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;N-187&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div></div>
+    <div id="m-order-list"><div class="empty"><div class="empty-icon">📦</div><div class="empty-text">尚無訂單資料</div></div></div>
   </div>
 
   <!-- MOBILE: 驗貨 -->
-  <div id="page-inspect" class="page active">
+  <div id="page-inspect" class="page">
     <div class="edit-banner" id="m-edit-banner">✏️ 編輯模式</div>
-    <div class="prefill-info" id="m-prefill" style="display: block;">AC1-26020903 · <b>NAPPA J2</b> · BLK · 批號：<b>STOCK</b></div>
+    <div class="prefill-info" id="m-prefill"></div>
 
     <div class="form-section">
       <div class="form-section-title">基本資料</div>
-      <div class="form-group"><label>訂單號碼</label><select id="m-orderNo" onchange="onOrderChange(&#39;m&#39;)"><option value="">請選擇</option><option value="AC1-26010502">AC1-26010502 — NAPPA J2 — BLK</option><option value="AC1-26020903">AC1-26020903 — NAPPA J2 — BLK</option><option value="AC1-26020903">AC1-26020903 — NAPPA J2 — BLK</option><option value="AC1-26031701">AC1-26031701 — NAPPA J2 — BLK</option><option value="AC1-26031003">AC1-26031003 — DUBLIN — 0800374</option><option value="AC1-26031003">AC1-26031003 — DUBLIN — 1200248</option><option value="AC1-26031005">AC1-26031005 — DUBLIN — 1200248</option><option value="AC1-26032001">AC1-26032001 — DUBLIN — 0800374</option><option value="AC1-26033004">AC1-26033004 — DUBLIN — 1200248</option><option value="AC1-26033004">AC1-26033004 — DUBLIN — 0800982</option><option value="AC1-26033004">AC1-26033004 — DUBLIN — GR07-19AW</option><option value="AC1-26033004">AC1-26033004 — DUBLIN — 15-0955TP</option><option value="2023年試做">2023年試做 — NAPPA J2 — BLK</option><option value="AC1-26031904">AC1-26031904 — DUBLIN — PK26-20AW</option><option value="AC1-26040104">AC1-26040104 — DUBLIN — 0800374</option><option value="AC1-26040104">AC1-26040104 — DUBLIN — 0800982</option><option value="AC1-26040104">AC1-26040104 — NAPPA J2 — 18-1312TPG</option><option value="AC1-26012104">AC1-26012104 — DUBLIN — GN63-22AW</option><option value="AC1-26040104">AC1-26040104 — DUBLIN — YL02-19S</option><option value="AC1-26040104">AC1-26040104 — NAPPA J2 — BLK</option></select></div>
+      <div class="form-group"><label>訂單號碼</label><select id="m-orderNo" onchange="onOrderChange(&#39;m&#39;)"><option value="">請選擇</option></select></div>
       <div class="form-row">
-        <div><label>皮廠批號</label><select id="m-batchNo"><option value="">請選批號</option><option value="STOCK">STOCK</option></select></div>
+        <div><label>皮廠批號</label><select id="m-batchNo"><option value="">請選批號</option></select></div>
         <div><label>驗貨日期</label><input type="date" id="m-date"></div>
       </div>
       <div class="form-group"><label>驗貨員</label>
@@ -1322,7 +321,7 @@ textarea { resize: none; height: 80px; font-size: 15px; }
 
     <div class="desktop-orders">
       <div class="filter-bar" style="margin-bottom:1rem">
-        <select class="filter-select" id="d-filter-year" onchange="applyFilter(&#39;d&#39;)"><option value="">全部年份</option><option value="2026">2026年</option></select>
+        <select class="filter-select" id="d-filter-year" onchange="applyFilter(&#39;d&#39;)"><option value="">全部年份</option></select>
         <select class="filter-select" id="d-filter-month" onchange="applyFilter(&#39;d&#39;)">
           <option value="">全部月份</option>
           <option value="01">1月</option><option value="02">2月</option><option value="03">3月</option>
@@ -1331,1018 +330,17 @@ textarea { resize: none; height: 80px; font-size: 15px; }
           <option value="10">10月</option><option value="11">11月</option><option value="12">12月</option>
         </select>
         <button class="filter-toggle" id="d-show-done" onclick="toggleShowDone()">顯示已完成</button>
+        <button class="filter-toggle active" id="d-show-undone" onclick="toggleShowUndone()">未完成</button>
       </div>
-      <div id="d-order-list"><div class="order-card" id="d-ord-0">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-0&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26010502 <span style="font-size:11px;font-weight:700;color:#1A6B45;background:#E6F5EE;padding:2px 8px;border-radius:99px;margin-left:6px">✓ 驗貨完畢</span></div>
-          <div class="order-desc">NAPPA J2 · BLK · ETC 4/23 · <span style="color:var(--text2);font-weight:700">下單 41325 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">1/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display: none;">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 41325 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-0-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26010502&#39;,document.getElementById(&#39;d-ord-0-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;d-ord-0-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">STOCK</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 2000張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              <span style="font-size:12px;color:var(--text2);font-weight:700">｜之前與Ellen出差驗貨, 以此新增加入系統</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1778046178071" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1778046178071&#39;,document.getElementById(&#39;ft-1778046178071&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1778046178071&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;STOCK&#39;,&#39;AC1-26010502&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="d-ord-1">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-1&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26020903 </div>
-          <div class="order-desc">NAPPA J2 · BLK · ETC 4/23 · <span style="color:var(--text2);font-weight:700">下單 6925 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display: none;">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 6925 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-1-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26020903&#39;,document.getElementById(&#39;d-ord-1-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;d-ord-1-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">STOCK</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26020903&#39;,&#39;STOCK&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;STOCK&#39;,&#39;AC1-26020903&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="d-ord-2">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-2&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26020903 </div>
-          <div class="order-desc">NAPPA J2 · BLK · ETC 4/23 · <span style="color:var(--text2);font-weight:700">下單 7800 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display: none;">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 7800 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-2-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26020903&#39;,document.getElementById(&#39;d-ord-2-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;d-ord-2-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">STOCK</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26020903&#39;,&#39;STOCK&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;STOCK&#39;,&#39;AC1-26020903&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="d-ord-3">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-3&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26031701 </div>
-          <div class="order-desc">NAPPA J2 · BLK · ETC 4/23 · <span style="color:var(--text2);font-weight:700">下單 2900 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/0批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display: none;">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 2900 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-3-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26031701&#39;,document.getElementById(&#39;d-ord-3-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;d-ord-3-batch-input&#39;)">新增</button>
-        </div>
-        <div style="padding:16px;color:var(--text3);font-size:14px;text-align:center">尚無批次，請新增批號</div>
-      </div>
-    </div><div class="order-card" id="d-ord-4">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-4&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26031003 </div>
-          <div class="order-desc">DUBLIN · 0800374 · ETC 4/23 · <span style="color:var(--text2);font-weight:700">下單 20000 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">3/5批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display: none;">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 20000 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-4-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26031003&#39;,document.getElementById(&#39;d-ord-4-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800374&#39;,&#39;d-ord-4-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">1305</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 176張</span>
-              <span class="batch-fail">✗ 1張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777974003422" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777974003422&#39;,document.getElementById(&#39;ft-1777974003422&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777974003422&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1305&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1306</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 189張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777974032358" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777974032358&#39;,document.getElementById(&#39;ft-1777974032358&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777974032358&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1306&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1307</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 177張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777974054450" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777974054450&#39;,document.getElementById(&#39;ft-1777974054450&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777974054450&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1307&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1308</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1308&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1308&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1309</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1309&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1309&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="d-ord-5">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-5&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26031003 </div>
-          <div class="order-desc">DUBLIN · 1200248 ·  · <span style="color:var(--text2);font-weight:700">下單 60000 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">10/15批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display: none;">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 60000 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-5-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26031003&#39;,document.getElementById(&#39;d-ord-5-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;1200248&#39;,&#39;d-ord-5-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">1310</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1310&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1310&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1311</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 175張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777975454443" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777975454443&#39;,document.getElementById(&#39;ft-1777975454443&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777975454443&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1311&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1312</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 178張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777975605127" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777975605127&#39;,document.getElementById(&#39;ft-1777975605127&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777975605127&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1312&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1313</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 168張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1778033778510" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1778033778510&#39;,document.getElementById(&#39;ft-1778033778510&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1778033778510&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1313&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1314</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 179張</span>
-              <span class="batch-fail">✗ 1張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777975757939" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777975757939&#39;,document.getElementById(&#39;ft-1777975757939&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777975757939&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1314&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1315</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 175張</span>
-              <span class="batch-fail">✗ 2張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777975814427" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777975814427&#39;,document.getElementById(&#39;ft-1777975814427&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777975814427&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1315&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1316</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 160張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777975848115" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777975848115&#39;,document.getElementById(&#39;ft-1777975848115&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777975848115&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1316&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1317</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 177張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1778033681553" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1778033681553&#39;,document.getElementById(&#39;ft-1778033681553&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1778033681553&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1317&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1318</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 179張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1778033900845" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1778033900845&#39;,document.getElementById(&#39;ft-1778033900845&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1778033900845&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1318&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1319</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 158張</span>
-              <span class="batch-fail">✗ 10張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1778033934145" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1778033934145&#39;,document.getElementById(&#39;ft-1778033934145&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1778033934145&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1319&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1320</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 175張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1778033962710" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1778033962710&#39;,document.getElementById(&#39;ft-1778033962710&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1778033962710&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1320&#39;,&#39;AC1-26031003&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1321</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1321&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1321&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1322</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1322&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1322&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1323</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1323&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1323&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1324</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031003&#39;,&#39;1324&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1324&#39;,&#39;AC1-26031003&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="d-ord-6">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-6&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26031005 </div>
-          <div class="order-desc">DUBLIN · 1200248 ·  · <span style="color:var(--text2);font-weight:700">下單 9650 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">2/3批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 9650 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-6-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26031005&#39;,document.getElementById(&#39;d-ord-6-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;1200248&#39;,&#39;d-ord-6-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">1302</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 147張</span>
-              <span class="batch-fail">✗ 1張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777975166059" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777975166059&#39;,document.getElementById(&#39;ft-1777975166059&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777975166059&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1302&#39;,&#39;AC1-26031005&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1303</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 143張</span>
-              <span class="batch-fail">✗ 1張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777975203475" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777975203475&#39;,document.getElementById(&#39;ft-1777975203475&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777975203475&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1303&#39;,&#39;AC1-26031005&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1304</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26031005&#39;,&#39;1304&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1304&#39;,&#39;AC1-26031005&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="d-ord-7">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-7&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26032001 </div>
-          <div class="order-desc">DUBLIN · 0800374 · ETC 4/23 · <span style="color:var(--text2);font-weight:700">下單 425 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/0批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 425 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-7-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26032001&#39;,document.getElementById(&#39;d-ord-7-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800374&#39;,&#39;d-ord-7-batch-input&#39;)">新增</button>
-        </div>
-        <div style="padding:16px;color:var(--text3);font-size:14px;text-align:center">尚無批次，請新增批號</div>
-      </div>
-    </div><div class="order-card" id="d-ord-8">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-8&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26033004 </div>
-          <div class="order-desc">DUBLIN · 1200248 · ETC 4/27 · <span style="color:var(--text2);font-weight:700">下單 18900 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">1/6批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 18900 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-8-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26033004&#39;,document.getElementById(&#39;d-ord-8-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;1200248&#39;,&#39;d-ord-8-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">1325</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1325&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1325&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1326</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1326&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1326&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1327</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1327&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1327&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1328</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1328&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1328&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1329</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;1329&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1329&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1302</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 147張</span>
-              <span class="batch-fail">✗ 1張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777974412215" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777974412215&#39;,document.getElementById(&#39;ft-1777974412215&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777974412215&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1302&#39;,&#39;AC1-26033004&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="d-ord-9">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-9&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26033004 </div>
-          <div class="order-desc">DUBLIN · 0800982 · ETC 4/27 · <span style="color:var(--text2);font-weight:700">下單 2500 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 2500 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-9-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26033004&#39;,document.getElementById(&#39;d-ord-9-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800982&#39;,&#39;d-ord-9-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">NO PRODUCE</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;NO PRODUCE&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;NO PRODUCE&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="d-ord-10">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-10&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26033004 </div>
-          <div class="order-desc">DUBLIN · GR07-19AW · ETC 4/27 · <span style="color:var(--text2);font-weight:700">下單 25 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 25 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-10-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26033004&#39;,document.getElementById(&#39;d-ord-10-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;GR07-19AW&#39;,&#39;d-ord-10-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">NO PRODUCE</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;NO PRODUCE&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;NO PRODUCE&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="d-ord-11">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-11&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26033004 </div>
-          <div class="order-desc">DUBLIN · 15-0955TP · ETC 4/27 · <span style="color:var(--text2);font-weight:700">下單 25 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 25 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-11-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26033004&#39;,document.getElementById(&#39;d-ord-11-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;15-0955TP&#39;,&#39;d-ord-11-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">NO PRODUCE</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26033004&#39;,&#39;NO PRODUCE&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;NO PRODUCE&#39;,&#39;AC1-26033004&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="d-ord-12">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-12&#39;)">
-        <div class="order-info">
-          <div class="order-no">2023年試做 </div>
-          <div class="order-desc">NAPPA J2 · BLK · ETC 4/27 · <span style="color:var(--text2);font-weight:700">下單 3000 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 3000 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-12-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;2023年試做&#39;,document.getElementById(&#39;d-ord-12-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;d-ord-12-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">2023 年試做</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;2023年試做&#39;,&#39;2023 年試做&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;2023 年試做&#39;,&#39;2023年試做&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="d-ord-13">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-13&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26031904 <span style="font-size:11px;font-weight:700;color:#1A6B45;background:#E6F5EE;padding:2px 8px;border-radius:99px;margin-left:6px">✓ 驗貨完畢</span></div>
-          <div class="order-desc">DUBLIN · PK26-20AW · ETC 4/30 · <span style="color:var(--text2);font-weight:700">下單 1025 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">1/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 1025 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-13-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26031904&#39;,document.getElementById(&#39;d-ord-13-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;PK26-20AW&#39;,&#39;d-ord-13-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">COL-290</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 49張</span>
-              <span class="batch-fail">✗ 1張</span>
-              
-              <span style="font-size:12px;color:var(--text2);font-weight:700">｜一張鬆面打掉, 約五張有血管放入一起出</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1777974574778" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1777974574778&#39;,document.getElementById(&#39;ft-1777974574778&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1777974574778&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;COL-290&#39;,&#39;AC1-26031904&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="d-ord-14">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-14&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26040104 </div>
-          <div class="order-desc">DUBLIN · 0800374 · ETC 4/30 · <span style="color:var(--text2);font-weight:700">下單 3450 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 3450 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-14-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;d-ord-14-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800374&#39;,&#39;d-ord-14-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">NO PRODUCE</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;NO PRODUCE&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;NO PRODUCE&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="d-ord-15">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-15&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26040104 </div>
-          <div class="order-desc">DUBLIN · 0800982 · ETC 4/30 · <span style="color:var(--text2);font-weight:700">下單 13650 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/3批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 13650 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-15-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;d-ord-15-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;0800982&#39;,&#39;d-ord-15-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">1330</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;1330&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1330&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1331</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;1331&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1331&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">1332</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;1332&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1332&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="d-ord-16">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-16&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26040104 <span style="font-size:11px;font-weight:700;color:#1A6B45;background:#E6F5EE;padding:2px 8px;border-radius:99px;margin-left:6px">✓ 驗貨完畢</span></div>
-          <div class="order-desc">NAPPA J2 · 18-1312TPG · ETC 4/30 · <span style="color:var(--text2);font-weight:700">下單 150 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">1/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 150 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-16-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;d-ord-16-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;18-1312TPG&#39;,&#39;d-ord-16-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">N-185</div>
-          <div class="batch-info">
-            <div class="batch-results">
-              <span class="batch-pass">✓ 9張</span>
-              <span class="batch-fail">✗ 0張</span>
-              
-              
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:4px">
-              <span class="ctag pass">顏色✓</span><span class="ctag pass">物性✓</span><span class="ctag pass">軟度✓</span>
-              <span class="ctag pass">紋路✓</span><span class="ctag pass">背毛✓</span><span class="ctag pass">厚度✓</span>
-              <input type="number" placeholder="補填呎數" id="ft-1778044587559" value="" inputmode="numeric" style="width:110px;padding:4px 8px;font-size:12px;border:1.5px solid var(--border);border-radius:6px;background:var(--bg);outline:none">
-              <button class="btn btn-success" onclick="saveFootage(&#39;1778044587559&#39;,document.getElementById(&#39;ft-1778044587559&#39;).value)" style="padding:4px 10px;font-size:12px">更新</button>
-            </div>
-          </div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-outline" onclick="editRecord(&#39;1778044587559&#39;)" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;N-185&#39;,&#39;AC1-26040104&#39;)" style="padding:8px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="d-ord-17">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-17&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26012104 </div>
-          <div class="order-desc">DUBLIN · GN63-22AW · ETC 4/30 · <span style="color:var(--text2);font-weight:700">下單 250 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/0批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 250 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-17-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26012104&#39;,document.getElementById(&#39;d-ord-17-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;GN63-22AW&#39;,&#39;d-ord-17-batch-input&#39;)">新增</button>
-        </div>
-        <div style="padding:16px;color:var(--text3);font-size:14px;text-align:center">尚無批次，請新增批號</div>
-      </div>
-    </div><div class="order-card" id="d-ord-18">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-18&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26040104 </div>
-          <div class="order-desc">DUBLIN · YL02-19S · ETC 4/30 · <span style="color:var(--text2);font-weight:700">下單 4100 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/1批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 4100 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-18-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;d-ord-18-batch-input&#39;).value,&#39;DUBLIN&#39;,&#39;YL02-19S&#39;,&#39;d-ord-18-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">1333</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;1333&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;1333&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div><div class="order-card" id="d-ord-19">
-      <div class="order-card-hd" onclick="toggleOrder(&#39;d-ord-19&#39;)">
-        <div class="order-info">
-          <div class="order-no">AC1-26040104 </div>
-          <div class="order-desc">NAPPA J2 · BLK · ETC 4/30 · <span style="color:var(--text2);font-weight:700">下單 2175 呎</span></div>
-        </div>
-        <div class="order-meta">
-          <span class="batch-count">0/2批</span>
-          <span class="chevron">▼</span>
-        </div>
-      </div>
-      <div class="order-card-body" style="display:none">
-        <div class="order-progress-bar-wrap">
-          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-          <div class="progress-text">已驗呎數 0 / 下單 2175 呎 (0%)</div>
-        </div>
-        <div class="add-batch-wrap">
-          <input type="text" placeholder="新增批號" id="d-ord-19-batch-input">
-          <button class="btn btn-primary" onclick="addBatch(&#39;AC1-26040104&#39;,document.getElementById(&#39;d-ord-19-batch-input&#39;).value,&#39;NAPPA J2&#39;,&#39;BLK&#39;,&#39;d-ord-19-batch-input&#39;)">新增</button>
-        </div>
-        <div class="batch-row">
-          <div class="batch-no-badge">N-186</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;N-186&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;N-186&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div><div class="batch-row">
-          <div class="batch-no-badge">N-187</div>
-          <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
-          <div class="batch-actions" style="flex-direction:row">
-            <button class="btn btn-primary" onclick="goInspect(&#39;AC1-26040104&#39;,&#39;N-187&#39;)" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch(&#39;N-187&#39;,&#39;AC1-26040104&#39;)" style="padding:9px 12px">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </div></div>
+      <div id="d-order-list"><div class="empty"><div class="empty-icon">📦</div><div class="empty-text">尚無訂單資料</div></div></div>
     </div>
     <div class="desktop-form">
       <div class="form-section">
         <div class="edit-banner" id="d-edit-banner">✏️ 編輯模式</div>
-        <div class="prefill-info" id="d-prefill" style="display: block;">AC1-26020903 · <b>NAPPA J2</b> · BLK · 批號：<b>STOCK</b></div>
-        <div class="form-group"><label>訂單號碼</label><select id="d-orderNo" onchange="onOrderChange(&#39;d&#39;)"><option value="">請選擇</option><option value="AC1-26010502">AC1-26010502 — NAPPA J2 — BLK</option><option value="AC1-26020903">AC1-26020903 — NAPPA J2 — BLK</option><option value="AC1-26020903">AC1-26020903 — NAPPA J2 — BLK</option><option value="AC1-26031701">AC1-26031701 — NAPPA J2 — BLK</option><option value="AC1-26031003">AC1-26031003 — DUBLIN — 0800374</option><option value="AC1-26031003">AC1-26031003 — DUBLIN — 1200248</option><option value="AC1-26031005">AC1-26031005 — DUBLIN — 1200248</option><option value="AC1-26032001">AC1-26032001 — DUBLIN — 0800374</option><option value="AC1-26033004">AC1-26033004 — DUBLIN — 1200248</option><option value="AC1-26033004">AC1-26033004 — DUBLIN — 0800982</option><option value="AC1-26033004">AC1-26033004 — DUBLIN — GR07-19AW</option><option value="AC1-26033004">AC1-26033004 — DUBLIN — 15-0955TP</option><option value="2023年試做">2023年試做 — NAPPA J2 — BLK</option><option value="AC1-26031904">AC1-26031904 — DUBLIN — PK26-20AW</option><option value="AC1-26040104">AC1-26040104 — DUBLIN — 0800374</option><option value="AC1-26040104">AC1-26040104 — DUBLIN — 0800982</option><option value="AC1-26040104">AC1-26040104 — NAPPA J2 — 18-1312TPG</option><option value="AC1-26012104">AC1-26012104 — DUBLIN — GN63-22AW</option><option value="AC1-26040104">AC1-26040104 — DUBLIN — YL02-19S</option><option value="AC1-26040104">AC1-26040104 — NAPPA J2 — BLK</option></select></div>
+        <div class="prefill-info" id="d-prefill"></div>
+        <div class="form-group"><label>訂單號碼</label><select id="d-orderNo" onchange="onOrderChange(&#39;d&#39;)"><option value="">請選擇</option></select></div>
         <div class="form-row">
-          <div><label>皮廠批號</label><select id="d-batchNo"><option value="">請選批號</option><option value="STOCK">STOCK</option></select></div>
+          <div><label>皮廠批號</label><select id="d-batchNo"><option value="">請選批號</option></select></div>
           <div><label>驗貨日期</label><input type="date" id="d-date"></div>
         </div>
         <div class="form-group"><label>驗貨員</label>
@@ -2372,10 +370,10 @@ textarea { resize: none; height: 80px; font-size: 15px; }
 
 <!-- BOTTOM NAV -->
 <nav class="app-nav">
-  <button class="nav-item" id="nav-orders" onclick="showPage(&#39;orders&#39;)">
+  <button class="nav-item active" id="nav-orders" onclick="showPage(&#39;orders&#39;)">
     <span class="nav-icon">📦</span>訂單
   </button>
-  <button class="nav-item active" id="nav-inspect" onclick="showPage(&#39;inspect&#39;)">
+  <button class="nav-item" id="nav-inspect" onclick="showPage(&#39;inspect&#39;)">
     <span class="nav-icon">✍️</span>驗貨
   </button>
 </nav>
@@ -2453,10 +451,11 @@ async function loadAll() {
     showStatus('⏳ 載入記錄...','loading');
     const rRes=await apiCall({action:'getRecords'});
     records=rRes.rows&&rRes.rows.length>1?rRes.rows.slice(1).map(r=>({
-      id:r[0],batchNo:r[1],orderNo:r[2],date:fmtDate(r[3]),
-      inspector:r[4],color:r[5],physical:r[6],softness:r[7],
-      texture:r[8],backing:r[9],thickness:r[10],
-      qtyPass:Number(r[11])||0,qtyFail:Number(r[12])||0,footage:r[13]||'',note:r[14]||''
+      id:r[0],batchNo:r[1],orderNo:r[2],material:r[3]||'',orderColor:r[4]||'',
+      date:fmtDate(r[5]),inspector:r[6],
+      color:r[7],physical:r[8],softness:r[9],
+      texture:r[10],backing:r[11],thickness:r[12],
+      qtyPass:Number(r[13])||0,qtyFail:Number(r[14])||0,footage:r[15]||'',note:r[16]||''
     })):[];
     showStatus('✓ 資料已同步','ok');
     renderAll();
@@ -2465,23 +464,14 @@ async function loadAll() {
     const bar=document.getElementById('sync-bar');
     bar.style.opacity='1'; bar.style.pointerEvents='auto'; bar.style.cursor='pointer';
     bar.onclick=()=>{bar.style.pointerEvents='none';// DELETE BATCH
-async function deleteBatch(batchNo, orderNo) {
+async function deleteBatch(batchNo, orderNo, color) {
   if(!confirm(`確定要刪除批號 ${batchNo}？相關驗貨記錄也會一併刪除。`)) return;
-  
-  // Remove from local data
-  const relatedRecords = records.filter(r => r.batchNo === batchNo && r.orderNo === orderNo);
   batches = batches.filter(b => !(b.batchNo === batchNo && b.orderNo === orderNo));
   records = records.filter(r => !(r.batchNo === batchNo && r.orderNo === orderNo));
   renderAll();
-  
   showStatus('⏳ 刪除中...', 'loading');
   try {
-    // Delete related records first
-    for (const r of relatedRecords) {
-      await apiCall({action:'deleteRecord', id: r.id});
-    }
-    // Delete batch
-    await apiCall({action:'deleteBatch', batchNo, orderNo});
+    await apiCall({action:'deleteBatch', batchNo, orderNo, color});
     showStatus('✓ 批號已刪除', 'ok');
   } catch(e) {
     showStatus('⚠️ 刪除失敗', 'error');
@@ -2490,6 +480,7 @@ async function deleteBatch(batchNo, orderNo) {
 
 // FILTER STATE
 let showDone = false;
+let showUndone = true;
 let filterYear = '';
 let filterMonth = '';
 
@@ -2507,11 +498,21 @@ function getOrderMonth(o) {
 
 function getFilteredOrders() {
   return orders.filter(o => {
-    if (!showDone && o.status === '已完成') return false;
+    const isDone = o.status === '已完成';
+    if (!showDone && isDone) return false;
+    if (!showUndone && !isDone) return false;
     if (filterYear && getOrderYear(o) !== filterYear) return false;
     if (filterMonth && getOrderMonth(o) !== filterMonth) return false;
     return true;
   });
+}
+
+function toggleShowUndone() {
+  showUndone = !showUndone;
+  document.querySelectorAll('#m-show-undone, #d-show-undone').forEach(btn => {
+    btn.classList.toggle('active', showUndone);
+  });
+  renderAll();
 }
 
 function applyFilter(src) {
@@ -2672,7 +673,12 @@ async function addRecord(){
   if(!data.orderNo||!data.batchNo){alert('請選擇訂單與批號');return;}
   if(!data.inspector){alert('請選擇驗貨員');return;}
   if(data.qtyPass===0&&data.qtyFail===0){alert('請填寫張數');return;}
-  const record={id:Date.now(),footage:'',...data};
+  const orderData = orders.find(o => o.orderNo === data.orderNo);
+  const record={
+    id: data.orderNo+'_'+data.batchNo,
+    footage:'', material:orderData?.material||'', orderColor:orderData?.color||'',
+    ...data
+  };
   records.push(record); clearForm(); renderAll(); showPage('orders');
   showStatus('⏳ 同步中...','loading');
   try{await apiCall({action:'addRecord',data:record});showStatus('✓ 已同步','ok');}
@@ -2686,7 +692,9 @@ function editRecord(id){
 async function saveEdit(){
   const data=getFormData();
   if(!data.orderNo||!data.batchNo){alert('請選擇訂單與批號');return;}
-  const record={id:editingId,footage:records.find(r=>String(r.id)===String(editingId))?.footage||'',...data};
+  const orderData = orders.find(o => o.orderNo === data.orderNo);
+  const existRec = records.find(r=>String(r.id)===String(editingId));
+  const record={id:editingId,footage:existRec?.footage||'',material:orderData?.material||'',orderColor:orderData?.color||'',...data};
   const idx=records.findIndex(r=>String(r.id)===String(editingId));
   if(idx!==-1) records[idx]=record;
   editingId=null; clearForm(); setEditMode(false); renderAll(); showPage('orders');
@@ -2697,16 +705,18 @@ async function saveEdit(){
 function cancelEdit(){editingId=null;clearForm();setEditMode(false);}
 async function deleteRecord(id){
   if(!confirm('確定要刪除？')) return;
+  const rec=records.find(r=>String(r.id)===String(id));
   records=records.filter(r=>String(r.id)!==String(id)); renderAll();
   showStatus('⏳ 刪除中...','loading');
-  try{await apiCall({action:'deleteRecord',id});showStatus('✓ 已刪除','ok');}
+  try{await apiCall({action:'deleteRecord',batchNo:rec?.batchNo,orderNo:rec?.orderNo});showStatus('✓ 已刪除','ok');}
   catch(e){showStatus('⚠️ 刪除失敗','error');}
 }
 async function saveFootage(id,val){
   const idx=records.findIndex(r=>String(r.id)===String(id));
   if(idx!==-1) records[idx].footage=val;
+  const rec=records[idx];
   showStatus('⏳ 更新中...','loading');
-  try{await apiCall({action:'updateFootage',data:{id,footage:val}});showStatus('✓ 呎數已更新','ok');}
+  try{await apiCall({action:'updateFootage',data:{id,batchNo:rec?.batchNo,orderNo:rec?.orderNo,footage:val}});showStatus('✓ 呎數已更新','ok');}
   catch(e){showStatus('⚠️ 更新失敗','error');}
 }
 async function addBatch(orderNo,batchNo,material,color,inputId){
@@ -2773,7 +783,7 @@ function renderOrderCards(elId){
           </div>
           <div class="batch-actions" style="flex-direction:row">
             <button class="btn btn-outline" onclick="editRecord('${rec.id}')" style="padding:8px 12px">✏️</button>
-            <button class="btn btn-danger" onclick="deleteBatch('${b.batchNo}','${o.orderNo}')" style="padding:8px 12px">🗑️</button>
+            <button class="btn btn-danger" onclick="deleteBatch('${b.batchNo}','${o.orderNo}','${o.color}')" style="padding:8px 12px">🗑️</button>
           </div>
         </div>`;
       } else {
@@ -2782,7 +792,7 @@ function renderOrderCards(elId){
           <div class="batch-info"><div class="batch-uninspected">尚未驗貨</div></div>
           <div class="batch-actions" style="flex-direction:row">
             <button class="btn btn-primary" onclick="goInspect('${o.orderNo}','${b.batchNo}')" style="padding:9px 16px">驗貨</button>
-            <button class="btn btn-danger" onclick="deleteBatch('${b.batchNo}','${o.orderNo}')" style="padding:9px 12px">🗑️</button>
+            <button class="btn btn-danger" onclick="deleteBatch('${b.batchNo}','${o.orderNo}','${o.color}')" style="padding:9px 12px">🗑️</button>
           </div>
         </div>`;
       }
@@ -2846,23 +856,14 @@ function exportCSV(){
 }
 
 // DELETE BATCH
-async function deleteBatch(batchNo, orderNo) {
+async function deleteBatch(batchNo, orderNo, color) {
   if(!confirm(`確定要刪除批號 ${batchNo}？相關驗貨記錄也會一併刪除。`)) return;
-  
-  // Remove from local data
-  const relatedRecords = records.filter(r => r.batchNo === batchNo && r.orderNo === orderNo);
   batches = batches.filter(b => !(b.batchNo === batchNo && b.orderNo === orderNo));
   records = records.filter(r => !(r.batchNo === batchNo && r.orderNo === orderNo));
   renderAll();
-  
   showStatus('⏳ 刪除中...', 'loading');
   try {
-    // Delete related records first
-    for (const r of relatedRecords) {
-      await apiCall({action:'deleteRecord', id: r.id});
-    }
-    // Delete batch
-    await apiCall({action:'deleteBatch', batchNo, orderNo});
+    await apiCall({action:'deleteBatch', batchNo, orderNo, color});
     showStatus('✓ 批號已刪除', 'ok');
   } catch(e) {
     showStatus('⚠️ 刪除失敗', 'error');
@@ -2871,6 +872,7 @@ async function deleteBatch(batchNo, orderNo) {
 
 // FILTER STATE
 let showDone = false;
+let showUndone = true;
 let filterYear = '';
 let filterMonth = '';
 
@@ -2888,11 +890,21 @@ function getOrderMonth(o) {
 
 function getFilteredOrders() {
   return orders.filter(o => {
-    if (!showDone && o.status === '已完成') return false;
+    const isDone = o.status === '已完成';
+    if (!showDone && isDone) return false;
+    if (!showUndone && !isDone) return false;
     if (filterYear && getOrderYear(o) !== filterYear) return false;
     if (filterMonth && getOrderMonth(o) !== filterMonth) return false;
     return true;
   });
+}
+
+function toggleShowUndone() {
+  showUndone = !showUndone;
+  document.querySelectorAll('#m-show-undone, #d-show-undone').forEach(btn => {
+    btn.classList.toggle('active', showUndone);
+  });
+  renderAll();
 }
 
 function applyFilter(src) {
